@@ -1,0 +1,169 @@
+# $FreeBSD: src/share/skel/dot.cshrc,v 1.10.2.2 2000/07/15 03:31:10 rwatson Exp $
+#
+# .cshrc - csh resource script, read at beginning of execution by each shell
+#
+# see also csh(1), environ(7).
+#
+
+alias h		history 25
+alias j		jobs -l
+alias la	ls -a
+alias lf	ls -FA
+alias ll	ls -lA
+alias a		alias
+alias dir ls -AlFG
+alias l ls -AsFG
+alias cls clear
+alias md mkdir
+alias rd rmdir
+alias cd.. cd ..
+alias .. cd ..
+alias ... cd ../..
+alias .... cd ../../..
+alias / cd /
+alias Inbox mutt -f =Inbox
+alias gcc3 source ~/.tcsh/gcc3.tcsh
+alias excuse fortune excuses
+
+# A righteous umask
+umask 22
+
+set path = (/sbin /bin /usr/sbin /usr/bin /usr/games /usr/local/sbin /usr/local/bin /usr/X11R6/bin /usr/local/mysql/bin $HOME/bin)
+
+setenv	EDITOR	vim
+setenv	PAGER	less
+setenv	BLOCKSIZE	K
+setenv	HOSTNAME	`hostname`
+setenv	CVS_RSH	ssh
+setenv	CVSROOT minion:/home/cvs
+setenv  RSYNC_RSH ssh
+setenv	RSH ssh
+
+
+if ($?prompt) then
+	# An interactive shell -- set some stuff up
+	setenv LSCOLORS ga
+	set prompt="%n@%m:%/%#"
+	set filec
+	set complete
+	set autolist
+	set echo_style = both
+	set listflags = a
+	set autoexpand
+	set matchbeep='nomatch'
+
+	set history = 100
+	set savehist = 100
+	set mail = (/var/mail/$USER)
+
+	# load a list of host names
+	set hosts = ()
+#	foreach f ($HOME/.hosts /usr/local/etc/csh.hosts $HOME/.rhosts /etc/hosts.equiv)
+#		if ( -r $f ) then
+#			set hosts = ($hosts `grep -v "+" $f | tr -s " " "   " | cut -f 1`)
+#		endif   
+#	end
+	# load in hostnames for ssh
+	foreach f ($HOME/.ssh/known_hosts $HOME/.ssh/known_hosts2)
+		if (-r $f) then
+				set hosts = ($hosts `awk '{sub(/,.*/, "", $1); print $1}' $f`)
+		endif
+	end
+	unset f
+ 	if (-e $HOME/.accounts) then
+		set hosts = ($hosts `/usr/bin/perl -ne 'next if /^\s*(#|$)/; s/#.*$//g; print;' $HOME/.accounts`)
+	endif
+	if ( -r $HOME/.netrc ) then
+		set f=`awk '/machine/ { print $2 }' < $HOME/.netrc` >& /dev/null
+		set hosts=($hosts $f)
+	endif   
+	unset f 
+	if (-e /etc/hosts) then
+		# start with /etc hosts
+		set hosts = ($hosts `/usr/bin/perl -pe 'next if /^\s*(#|$)/; s/#.*$//g; s/^[\s\d.]+\s+//; s/\s+/ /g;' /etc/hosts`)
+	endif   
+
+	# load in hostnames for ssh
+	if (-e $HOME/.ssh/config) then
+		set hosts = ($hosts `/usr/bin/perl -ne 'if (/^\s*Host\s([^\s]+)/) {print "$1\n"}' ~/.ssh/config`)
+	endif
+
+	complete which  	'p/*/c/'
+	complete man    	'p/*/c/'
+	complete whereis	'p/*/c/'
+	# complete only directories
+	complete {cd,chdir,pushd,popd,cl,pu,po} 'c@=@`dirs -v | sed s/\ /=/`@' 'p/1/d/'
+	complete rmdir  	'p/*/d/'
+
+	complete ssh        'n/-[iIF]/t/' \
+		'n/-o/(CheckHostIP ClearAllForwardings CompressionLevel ConnectionAttempts KeepAlive Protocol)/' \
+		'c/-/(a A b c e f g i I k l m n N o p P q s t T v x X C F L R D 1 2 4 6)/' \
+		'p/*/$hosts/'
+	complete ping       'c/-/(a c i I n )/' 'p/*/$hosts/'
+	complete traceroute 'c/-/(I m r )/' 'p/*/$hosts/'
+	complete tracert	'p/*/$hosts/'
+	complete telnet		'p/*/$hosts/'
+	complete ftp		'p/*/$hosts/'
+	complete lftp		'p/*/$hosts/'
+
+	# various other commands to complete
+	complete find   'p/1/d/'\
+					'n/-user/u/' \
+					'n/-group/g/' \
+					'n/-type/(b c d f l p s)/' \
+					'c/-/(exec group iname name nogroup nouser perm print0 regex size type user)/' 
+
+	complete cvs    'c/--/(help help-commands help-synonyms help-options)/' \
+					'p/1/(add annotate checkout commit diff history import log remove status tag update)/'
+									
+	complete df     c/--/"(all block-size human-readable si inodes kilobytes local megabytes no-sync portability sync \
+							type print-type exclude-type help version)"/ \
+						c/-/"(a H h i k l m P T t v x)"/
+
+	complete du     c/--/"(all block-size bytes total dereference-args \
+							human-readable si kilobytes count-links dereference \
+							megabytes separate-dirs summarize one-file-system \
+							exclude-from exclude max-depth help version"/ \
+						c/-/"(a b c D H h k L l m S s X x)"/
+
+	complete chown  'c/-/(c f h R v -)/' 'C@[./$~]@f@' 'c/*[.:]/g/' 'n/-/u/:' 'p/1/u/:' 'n/*/f/'
+	complete chgrp  'c/-/(c f h R v -)/' 'n/-/g/' 'p/1/g/' 'n/*/f/'
+	complete chmod  'c/-/(c f R v)/'
+	complete vim    'n/*/f:^*.[oa]/'
+	complete tar    'n/{-[Adrtux]*f,--file}/t:*.{tar,tgz,tar.gz,tar.bz2}/'
+
+	complete acroread   'p/*/f:*.pdf/'
+	complete apachectl  'c/*/(startssl stop restart fullstatus status graceful configtest help)/'
+
+	complete ./configure  'c/--*=/f/' 'c/--/(prefix  enable-shared disable-shared)/'
+	complete ./configure.pl 'c/--/(prefix bindir incdir libdir mandir developer disable-shared disable-examples contrib)/'
+
+	complete make   'n/-f/f/' \
+					'c/*=/f/' \
+					'n@*@`cat -s GNUmakefile Makefile makefile |& sed -n -e "/No such file/d" -e "/^[^     #].*:/s/:.*//p"`@'
+
+	complete {talk,ytalk,ntalk} 'p@1@`who | awk \{print\ \$1\} |sort -u`@'
+
+	# completions for built-ins
+	complete alias  'p/1/a/'
+
+endif
+
+if ("$TERM" == "rxvt") then
+	setenv TERM xterm
+endif
+#if ("$COLORTERM" == "rxvt-xpm") then
+#	setenv TERM rxvt
+#	stty erase ^?
+#endif
+
+# Load all files in .tcsh directory
+ls $HOME/.tcsh/*.tcsh >& /dev/null
+if ($? == 0) then
+    foreach i ($HOME/.tcsh/*.tcsh)
+        source $i
+    end
+endif
+
+# Darwin stuff
+#setenv TERM xterm-color
