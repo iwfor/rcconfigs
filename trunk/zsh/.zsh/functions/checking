@@ -1,0 +1,21 @@
+#!/usr/local/bin/zsh
+
+BALANCE_FILE=~/.checking-balance
+balance=0.0
+
+if [[ -r $BALANCE_FILE ]]; then
+    balance=`cat $BALANCE_FILE`
+    balance=`printf '%.2f\n' $balance`
+fi
+
+vared -c -p 'Current Balance: ' balance
+
+while :; do
+    vared -c -p 'Amount (or q to quit): ' amount
+    if [[ $amount = "q" ]]; then break; fi
+    
+    printf '=====================> %.2f\n' $(( balance = balance - amount ))
+    amount=''
+done
+
+print $balance > $BALANCE_FILE

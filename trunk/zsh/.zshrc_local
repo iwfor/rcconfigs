@@ -1,0 +1,15 @@
+#
+# zshrc_local for gobox
+#
+
+export EDITOR="vim"
+export PAGER="less"
+export RSYNC_RSH="ssh"
+
+export PATH="/opt/local/bin:/usr/X11R6/bin:${PATH}"
+export MANPATH="${MANPATH}:/opt/local/man:/usr/local/teTex/man:/usr/X11R6/man"
+export LD_LIBRARY_PATH="/opt/local/lib:/usr/lib:/usr/local/lib:/usr/X11R6/lib"
+#export DYLD_LIBARARY_PATH="/usr/lib:/usr/local/lib:/usr/X11R6/lib:/opt/local/lib"
+export SVNHOME="svn+ssh://minion.noscience.net/home/svn"
+export BOOST="/opt/local"
+export DISPLAY=:0.0

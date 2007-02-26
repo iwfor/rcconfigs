@@ -1,0 +1,88 @@
+# keep some arrays unique
+typeset -U path
+typeset -U fpath
+typeset -U cdpath
+typeset -U manpath
+
+# some variables to export
+export OSNAME=`uname -s`
+
+# add our function path
+functions_directory=~/.zsh/functions
+if [[ -d $functions_directory ]]; then
+    fpath=($functions_directory $fpath)
+fi
+
+# history stuff
+HISTSIZE=1000
+SAVEHIST=1000
+HISTFILE=~/.history
+setopt append_history 
+setopt inc_append_history 
+setopt extended_history 
+setopt hist_find_no_dups
+setopt hist_reduce_blanks 
+setopt hist_ignore_space
+setopt hist_no_store 
+setopt hist_no_functions 
+setopt no_hist_beep
+
+# clober stuff
+setopt no_clobber 
+setopt hist_allow_clobber
+
+# other options
+setopt NO_beep
+setopt auto_cd
+setopt auto_list
+setopt multios
+setopt NO_correct 
+setopt NO_correct_all
+
+# add some path/man directories
+path=(~/bin ~/local/bin $path)
+manpath=(/usr/man /usr/share/man /usr/local/man /usr/local/share/man ~/local/man $manpath)
+
+# prompt magic
+autoload -U colors; colors
+setopt prompt_percent
+setopt prompt_subst
+prompt_newline=$'\n%{\r%}'
+prompt_backtick='\`'
+#PS1="%{$fg[cyan]%}.----(%{$fg[blue]%} %n%{$fg[red]%}@%{$fg[green]%}%m %{$fg[cyan]%})----%{$fg[cyan]%}(%{$fg[magenta]%} %? %{$fg[cyan]%})----%{$fg[cyan]%}(%{$fg[yellow]%} %~ %{$fg[cyan]%})${prompt_newline}${prompt_backtick}--%{$reset_color%}%B>%b "
+PS1="%{$fg[yellow]%}%n%{$fg[red]%}@%{$fg[green]%}%m%{$fg[red]%}:%{$fg[cyan]%}%~%{$fg[red]%}>%{$reset_color%}"
+PS2="%{$fg[yellow]%}%_%{$fg[red]%}>%{$reset_color%}"
+# fix vim syntax `"
+
+# autoload my functions
+autoload -U ${fpath[1]}/*(:t)
+
+# Misc
+autoload zcalc
+alias run-help >&/dev/null && unalias run-help
+autoload run-help
+
+# reverse unwanted aliasing of `which' by distribution startup
+# files (e.g. /etc/profile.d/which*.sh); zsh's which is perfectly
+# good as is.
+alias which >&/dev/null && unalias which
+
+# Make sure SHELL is defined for use by programs
+if [[ "z$SHELL" = "z" ]] ; then
+    export SHELL='zsh'
+fi
+
+# bring in other files
+. ~/.zsh/bindings
+. ~/.zsh/aliases
+. ~/.zsh/cvs
+. ~/.zsh/hosts
+. ~/.zsh/completion
+. ~/.zsh/term
+. ~/.zsh/dirs
+
+if [[ -e ~/.zshrc_local ]] ; then
+    . ~/.zshrc_local
+fi
+
+# vim:tw=300

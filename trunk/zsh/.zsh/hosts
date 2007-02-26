@@ -1,0 +1,8 @@
+#!/usr/local/bin/zsh
+
+# keep unique
+typeset -U ssh_hosts
+
+# suck in hostnames from known_hosts
+ssh_hosts=(`awk '{print $1}' < $HOME/.ssh/known_hosts | sed "s/,/ /"` $hosts)
+zstyle ':completion:*:(ssh|scp):*' hosts $ssh_hosts

@@ -1,0 +1,7 @@
+#!/usr/local/bin/zsh
+
+if [[ -r ~/mail/Inbox ]]; then
+    mutt -f =Inbox
+else
+    mutt
+fi

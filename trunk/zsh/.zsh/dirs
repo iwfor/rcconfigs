@@ -1,0 +1,38 @@
+#!/bin/zsh
+
+# directory stuff
+DIRSTACKSIZE=25
+setopt auto_pushd
+setopt pushd_minus
+setopt pushd_silent
+setopt pushd_ignore_dups
+
+cdhist=$HOME/.cdhist
+
+if [[ $OSNAME = 'CYGWIN_NT-5.1' || $OSNAME = 'CYGWIN_NT-5.0' ]] ; then
+    if [[ -e /bin/perl.cygwin.exe ]] ; then
+        PERL=/bin/perl.cygwin
+    else
+        PERL=/bin/perl
+    fi
+else
+    if [[ "$PERLz" = "z" ]] ; then
+        PERL=perl
+    fi
+fi
+
+# Override the internal 'cd' command with a special regex version
+cd () {
+    # Do some magic here to determine if regex cd should be called
+    if [[ "$1z" = "-lz" || "$1z" = "-rz" ]] ; then
+        todir=`$PERL ~/.zsh/scripts/cdregex.pl $2`
+        builtin cd "$todir"
+        unset todir
+    else
+        builtin cd $*
+    fi
+
+    # Prepend last directory to the history list
+    $PERL ~/.zsh/scripts/pushd.pl "$OLDPWD"
+    chmod 600 $cdhist
+}
