@@ -1,0 +1,76 @@
+#!/usr/local/bin/zsh
+
+# stuff for every os
+alias add-key='ssh-add $HOME/.ssh/id_dsa'
+
+alias cd..="cd .."
+alias ..="cd .."
+alias ...="cd ../.."
+alias ....="cd ../../.."
+alias .....="cd ../../../.."
+alias ......="cd ../../../../.."
+alias /="cd /"
+
+alias md="mkdir"
+alias rd="rmdir"
+alias cls="clear"
+alias d='dirs -v'
+alias j='jobs -l'
+alias s='screen -DR'
+alias h='history'
+alias x='startx &; logout'
+alias f='find . -name'
+
+# ls command
+if [[ $OSNAME = "FreeBSD" || $OSNAME = "Darwin" ]]; then
+	LSCOLOROPT='-G'
+elif [[ $OSNAME = "Linux" || $OSNAME = "cygwin" ]]; then
+	LSCOLOROPT='--color=auto'
+fi
+alias ll="ls -lhF $LSCOLOROPT"
+alias la="command ls -lhFa $LSCOLOROPT"
+alias lf="command ls -F $LSCOLOROPT"
+alias dir="command ls -AlF $LSCOLOROPT"
+alias l="command ls -AsF $LSCOLOROPT"
+
+# random junk
+alias longmont-library='telnet 204.133.207.247'
+
+if [[ $OSTYPE = "cygwin" ]]; then
+	if [[ $? = 0 ]]; then
+		gvim () { \
+            findcscopeout
+            if [[ "z$*" = "z" ]] ; then \
+                nohup \gvim > /dev/null 2>&1 & ; \
+            else  \
+                nohup \gvim `cygpath -m -- $*` > /dev/null 2>&1 & ;\
+            fi \
+        }
+	fi
+else
+    gvim () {
+        findcscopeout
+        nohup \gvim $* > /dev/null 2>&1 &
+    }
+fi
+
+# Always open files in the same instance of GVim
+alias ed="gvim --remote-tab"
+
+switchenv () {
+    `$HOME/.zsh/scripts/switchenv.pl $1`
+}
+
+# Try to find cscope.out, and set the CSCOPE_DB variable
+findcscopeout() {
+    TRYDIR=`pwd`
+    while [ "$TRYDIR" != "/" -a "$TRYDIR" != "" ] ; do
+        #    echo "$TRYDIR"
+        if [ -e "$TRYDIR/cscope.out" ] ; then
+            export CSCOPE_DB=`cygpath -m $TRYDIR/cscope.out`
+            break
+        fi
+        TRYDIR=`dirname $TRYDIR`
+    done
+    echo "Using CSCOPE database: $CSCOPE_DB"
+}

@@ -1,0 +1,12 @@
+#!/usr/local/bin/zsh
+
+export CVS_RSH=ssh
+
+if which vim > /dev/null 2>&1; then
+    export CVSEDITOR=vim
+else
+    export CVSEDITOR=vi
+fi
+
+export CVS_RSH=ssh
+#export CVSROOT=":ext:1.2.3.4:/cvs"

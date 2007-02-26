@@ -1,0 +1,19 @@
+#!/bin/zsh
+
+# Fix term on some systems
+if [[ $OSNAME = 'CYGWIN_NT-5.1' || $OSNAME = 'CYGWIN_NT-5.0' ]] ; then
+    if [[ $TERM = 'xterm' && $COLORTERM = 'rxvt-xpm' ]] ; then
+        export TERM='rxvt-cygwin-native'
+    fi
+elif [[ $OSNAME = 'AIX' || $OSNAME = 'SunOS' ]] ; then
+    export TERM='dtterm'
+else
+    # Make sure the term is only 'rxvt' on non-cygwin system.
+    if [[ $TERM = 'rxvt-cygwin-native' ]] ; then
+        export TERM='rxvt'
+    fi
+    if [[ $TERM = 'xterm' && $COLORTERM = 'rxvt-xpm' ]] ; then
+        export TERM='rxvt'
+    fi
+fi
+
