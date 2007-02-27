@@ -285,8 +285,8 @@ endfunction
 
 function CxxSettings()
     call ProgrammingSettings()
-    set dictionary+=$HOME/.vim/dictionary/cxx_keywords.txt
-    set dictionary+=$HOME/.vim/dictionary/cxx_stdlib.txt
+    set dictionary+=~/.vim/dictionary/cxx_keywords.txt
+    set dictionary+=~/.vim/dictionary/cxx_stdlib.txt
 
     imap <buffer> <CR> <C-R>=CxxEndToken()<CR>
 endfunction
@@ -303,15 +303,15 @@ function MakefileSettings()
     setlocal softtabstop=4
     setlocal shiftwidth=4
     setlocal noexpandtab
-    set dictionary+=$HOME/.vim/dictionary/make.txt
+    set dictionary+=~/.vim/dictionary/make.txt
     " Put in a couple of common completions
-    imap ( ()<C-O>i
-    imap { {}<C-O>i
+"    imap <buffer> ( ()<C-O>i
+"    imap <buffer> { {}<C-O>i
 endfunction
 
 function RubySettings ()
     call TwoSpaceSettings()
-    set dictionary+=$HOME/.vim/dictionary/ruby.txt
+    set dictionary+=~/.vim/dictionary/ruby.txt
 
     imap <buffer> <CR> <C-R>=RubyEndToken()<CR>
 endfunction
