@@ -51,5 +51,5 @@ hi Statement cterm=bold ctermfg=yellow gui=bold guifg=yellow
 hi Identifier ctermfg=Cyan guifg=green
 
 " Comment colors
-hi Comment ctermfg=Magenta guifg=orange gui=bold
+hi Comment ctermfg=Magenta guifg=orange gui=none
 hi Todo ctermfg=black ctermbg=red guifg=red guibg=black gui=bolditalic
