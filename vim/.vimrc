@@ -170,19 +170,9 @@ if &t_Co > 2 || has("gui_running")
     set hlsearch
     set incsearch
 
-    " colors to use
-    hi Normal ctermfg=Gray ctermbg=Black guifg=Gray guibg=Black
-    hi Search ctermfg=White ctermbg=Blue guifg=White guibg=Blue
-    hi Visual ctermfg=6 ctermbg=7 guifg=White guibg=Purple
-    hi StatusLine ctermbg=Black ctermfg=Cyan guibg=Black guifg=Cyan
-    hi StatusLineNC ctermfg=Gray ctermbg=Black guifg=Gray guibg=Black
-    hi Comment ctermfg=Magenta guifg=Magenta
-    hi Constant ctermfg=DarkYellow guifg=DarkYellow
-    hi String ctermfg=Green guifg=Green
-    hi PreProc ctermfg=Yellow guifg=Yellow
-    hi Statement cterm=bold ctermfg=Cyan gui=bold guifg=Cyan
-    hi Identifier ctermfg=Cyan guifg=LightBlue
-    hi Todo ctermfg=black ctermbg=red guifg=black guibg=red
+    " Load my colorscheme
+    colorscheme iwf
+
 endif
 
 augroup cprog
