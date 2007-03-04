@@ -171,7 +171,7 @@ if &t_Co > 2 || has("gui_running")
     set incsearch
 
     " Load my colorscheme
-    colorscheme iwf
+    colorscheme izek
 
 endif
 
