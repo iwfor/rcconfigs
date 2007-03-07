@@ -36,7 +36,7 @@ hi Visual ctermfg=6 ctermbg=7 guibg=blue
 
 " Status lines
 hi StatusLine ctermbg=Black ctermfg=Cyan guibg=yellow guifg=darkred
-hi StatusLineNC ctermfg=Gray ctermbg=Black guifg=black guibg=white
+hi StatusLineNC ctermfg=Gray ctermbg=Black guifg=grey20 guibg=grey80
 
 " Completion Menu
 hi Pmenu guifg=black guibg=grey70
