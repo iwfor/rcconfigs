@@ -68,38 +68,10 @@ set nofoldenable
 
 "# Cheat Sheet
 "#
-"#  F1 - Turn off search highlighting
-"#  F2 - Pick a buffer
-"#  F3 - Use Gay Indent Rules
-"#  F4 - Open fist mentioned header file
-"#  F5 - Toggle paste mode
-"#  F6 - Wrap current paragraph at 76 columns
-"#  F7 - 
-"#  F8 - Replay buffer A
-"#  F9 - Grow current window
-"# F10 - Shrink current window
-"# F11 - Maximize current window
-"# F12 - Change to next window
-nmap <F1> :nohls<cr>
-"map <silent> <unique> <F2> :SBufExplorer<CR>
-"nmap <F3> :Project<cr>
-"imap <F3> <c-o><F3>
-"nmap <F4> :call UseGayIndent()<cr>
-"imap <F4> <c-o><F3>
-"nmap <F5> :call TogglePasteMode()<cr>
-"imap <F5> <c-o><F5>
-"vmap <F6> :call WrapAt76()<cr>
-"imap <F6> <c-o><F6>
-"nmap <F8> @a
-"imap <F8> <c-o>@a
-"nmap <F9> <c-w>+
-"imap <F9> <Esc><F9>
-"nmap <F10> <c-w>-
-"imap <F10> <Esc><F10>
-"nmap <F11> <c-w>_
-"imap <F11> <Esc><F11>
-"nmap <F12> <c-w>w
-"imap <F12> <Esc><F12>
+"#  F1 - Toggle search highlighting
+"#  F2 - Toggle line numbers
+nmap <F1> :set hls!<cr>
+nmap <F2> :set nu!
 
 
 "# Some common emacs mappings: ^N, ^A, ^E
