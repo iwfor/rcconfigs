@@ -24,8 +24,8 @@ let g:colors_name="izek"
 hi LineNr guifg=yellow
 
 " Cursor color and higlighting
-hi CursorLine guibg=#282800
-hi CursorColumn guibg=#282800
+hi CursorLine guibg=#004040
+hi CursorColumn guibg=#004040
 hi Cursor guibg=red guifg=white
 
 " Search highlighting
@@ -43,12 +43,13 @@ hi Pmenu guifg=black guibg=grey70
 hi PmenuSel guifg=white guibg=black
 
 " Syntax colors
-hi Normal ctermfg=Gray ctermbg=Black guifg=white guibg=#383810
+hi Normal ctermfg=Gray ctermbg=Black guifg=white guibg=black
 hi Constant ctermfg=DarkYellow guifg=yellow
 hi String ctermfg=Green guifg=lightgreen
-hi PreProc ctermfg=Yellow guifg=lightgreen gui=bold
-hi Statement cterm=bold ctermfg=yellow gui=bold guifg=yellow
+hi PreProc ctermfg=Yellow guifg=lightgreen gui=none
+hi Statement cterm=bold ctermfg=yellow gui=none guifg=yellow
 hi Identifier ctermfg=Cyan guifg=green
+hi Type gui=none guifg=#eeaaaa
 
 " Comment colors
 hi Comment ctermfg=Magenta guifg=orange gui=none
