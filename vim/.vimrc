@@ -71,7 +71,7 @@ set nofoldenable
 "#  F1 - Toggle search highlighting
 "#  F2 - Toggle line numbers
 nmap <F1> :set hls!<cr>
-nmap <F2> :set nu!
+nmap <F2> :set nu!<cr>
 
 
 "# Some common emacs mappings: ^N, ^A, ^E
