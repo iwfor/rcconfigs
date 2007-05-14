@@ -21,7 +21,7 @@ endif
 let g:colors_name="izek"
 
 " Line Numbering
-hi LineNr guifg=yellow
+hi LineNr guifg=yellow guibg=grey15
 
 " Cursor color and higlighting
 hi CursorLine guibg=#004040
