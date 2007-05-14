@@ -118,7 +118,7 @@ abbr accross across
 abbr Accross Across
 
 nnoremap <silent> <F7> :Tlist<CR>
-command Q :qa
+command Q :q
 command Wq :wq
 command WQ :wq
 
