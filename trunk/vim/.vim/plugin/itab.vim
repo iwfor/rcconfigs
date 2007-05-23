@@ -1,13 +1,43 @@
-imap <TAB> <C-R>=TabComplete()<CR>
-function! TabComplete ()
+"####################################################################
+"
+" Copyright (C) 2005-2007 pmade inc. (Peter Jones pjones@pmade.com)
+" 
+" Permission is hereby granted, free of charge, to any person obtaining
+" a copy of this software and associated documentation files (the
+" "Software"), to deal in the Software without restriction, including
+" without limitation the rights to use, copy, modify, merge, publish,
+" distribute, sublicense, and/or sell copies of the Software, and to
+" permit persons to whom the Software is furnished to do so, subject to
+" the following conditions:
+" 
+" The above copyright notice and this permission notice shall be
+" included in all copies or substantial portions of the Software.
+" 
+" THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+" EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+" MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+" NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+" LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+" OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+" WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+"####################################################################
+function! PMADE_TabComplete ()
     if col('.') == 1
-	return "\<Tab>"
+        return "\<Tab>"
     end
 
-    if strpart(getline('.'), col('.') - 2, 1) !~ '^[A-Za-z0-9_-]$'
-	return "\<Tab>"
+    let prev_char_regex = '^[A-Za-z0-9_-]$'
+
+    if &filetype == 'ruby'
+        let prev_char_regex = '^[A-Za-z0-9_=?!-]$'
+    end
+
+    if strpart(getline('.'), col('.') - 2, 1) !~ prev_char_regex
+        return "\<Tab>"
     else
-	return "\<C-P>"
+        return pumvisible() ? "\<C-P>" : "\<C-X>\<C-P>"
     end
 endfunction
 
+"####################################################################
+imap <TAB> <C-R>=PMADE_TabComplete()<CR>
