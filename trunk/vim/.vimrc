@@ -70,7 +70,7 @@ set nofoldenable
 "#
 "#  F1 - Toggle search highlighting
 "#  F2 - Toggle line numbers
-nmap <F1> :set hls!<cr>
+nmap <F1> :nohls<cr>
 nmap <F2> :set nu!<cr>
 
 
