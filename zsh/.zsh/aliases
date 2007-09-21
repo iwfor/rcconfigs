@@ -47,7 +47,58 @@ if [[ $OSTYPE = "cygwin" ]]; then
             fi \
         }
 	fi
+    alias start="cmd /c start"
+    alias open="cmd /c start"
+    deltree () { \
+        for f in $* ; do\
+            if [[ -d "$f" ]]; then
+                echo "Removing $f..." ; \
+                time cmd /c "rd /s /q `cygpath -w $f`" ; \
+            elif [[ -f "$f" ]]; then \
+                echo "Removing $f..." ; \
+                cmd /c "del /f /q `cygpath -w $f`" ; \
+            fi \
+        done \
+    }
+    packdir() { \
+        for f in $* ; do\
+            if [[ -d "$f" ]]; then
+                echo "Packing $f..." ; \
+                time compact /c "`cygpath -w $f`" ; \
+                time compact /c /a /i /s "`cygpath -w $f`\\\*" ; \
+            elif [[ -f "$f" ]]; then \
+                echo "Packing $f..." ; \
+                compact /c /i /a "`cygpath -w $f`" ; \
+            fi \
+        done \
+    }
+    unpackdir() { \
+        for f in $* ; do\
+            if [[ -d "$f" ]]; then
+                echo "Unpacking $f..." ; \
+                time compact /u "`cygpath -w $f`" ; \
+                time compact /u /a /i /s "`cygpath -w $f`\\\*" ; \
+            elif [[ -f "$f" ]]; then \
+                echo "Unpacking $f..." ; \
+                compact /u /i /a "`cygpath -w $f`" ; \
+            fi \
+        done \
+    }
 else
+    if [[ $OSNAME = "Darwin" ]]; then
+        alias start="open"
+    fi
+    deltree () { \
+        for f in $* ; do\
+            if [[ -d "$f" ]]; then
+                echo "Removing $f..." ; \
+                time rm -rf "$f" ; \
+            elif [[ -f "$f" ]]; then \
+                echo "Removing $f..." ; \
+                rm -f "$f" ; \
+            fi \
+        done \
+    }
     gvim () {
         findcscopeout
         nohup \gvim $* > /dev/null 2>&1 &
