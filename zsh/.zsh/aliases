@@ -24,7 +24,7 @@ alias f='find . -name'
 # ls command
 if [[ $OSNAME = "FreeBSD" || $OSNAME = "Darwin" ]]; then
 	LSCOLOROPT='-G'
-elif [[ $OSNAME = "Linux" || $OSNAME = "cygwin" ]]; then
+elif [[ $OSNAME = "Linux" || $OSNAME = "cygwin" || $OSNAME = "CYGWIN_NT-5.1" ]]; then
 	LSCOLOROPT='--color=auto'
 fi
 alias ll="ls -lhF $LSCOLOROPT"
