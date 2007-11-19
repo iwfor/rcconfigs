@@ -87,6 +87,15 @@ if [[ $OSTYPE = "cygwin" ]]; then
 else
     if [[ $OSNAME = "Darwin" ]]; then
         alias start="open"
+        gvim () {
+            findcscopeout
+            nohup mvim $* > /dev/null 2>&1 &
+        }
+    else
+        gvim () {
+            findcscopeout
+            nohup \gvim $* > /dev/null 2>&1 &
+        }
     fi
     deltree () { \
         for f in $* ; do\
@@ -98,10 +107,6 @@ else
                 rm -f "$f" ; \
             fi \
         done \
-    }
-    gvim () {
-        findcscopeout
-        nohup \gvim $* > /dev/null 2>&1 &
     }
 fi
 
