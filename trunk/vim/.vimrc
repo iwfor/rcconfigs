@@ -11,6 +11,9 @@ set autoindent
 "set smartindent
 "set nowrap
 
+" Allow Vim to open a LOT of tabs at one time
+set tabpagemax=100
+
 " Use smart case checking in searches.  Requires both ignorecase and smartcase.
 set ignorecase
 set smartcase
@@ -123,6 +126,10 @@ command Wq :wq
 command WQ :wq
 
 command ReloadDocs :helptags ~/.vim/doc
+
+if has("gui_macvim")
+  let macvim_hig_shift_movement = 1
+endif
 
 autocmd FileType perl,sh,vim,tcl,java,html,css,jam,xml,xsl,zsh,tcsh,sh,bash,nsis       call ProgrammingSettings()
 autocmd FileType c,cpp                                                                 call CxxSettings()
