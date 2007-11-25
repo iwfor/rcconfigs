@@ -15,5 +15,9 @@ else
     if [[ $TERM = 'xterm' && $COLORTERM = 'rxvt-xpm' ]] ; then
         export TERM='rxvt'
     fi
+    if [[ "$TERM_PROGRAM" = 'iTerm.app' ]] ; then
+        export TERM='xterm'
+        export COLORTERM='iterm'
+    fi
 fi
 
