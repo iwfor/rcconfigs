@@ -7,6 +7,19 @@ if [[ $OSNAME = 'CYGWIN_NT-5.1' || $OSNAME = 'CYGWIN_NT-5.0' ]] ; then
     fi
 elif [[ $OSNAME = 'AIX' || $OSNAME = 'SunOS' ]] ; then
     export TERM='dtterm'
+elif [[ "$TERM_PROGRAM" != '' ]] ; then
+    if [[ "$TERM_PROGRAM" = 'iTerm.app' ]] ; then
+        # This fixes backspace in remote screen sessions, but causes others
+        # (arrow keys)
+        export TERM='xterm'
+        export COLORTERM='iterm'
+    fi
+    if [[ "$TERM_PROGRAM" = 'Apple_Terminal' ]] ; then
+        # This seems to fix problems with backspace not working in some remote
+        # screen sessions (dreamhost.com, or maybe Linux in general).
+        export TERM='rxvt'
+        export COLORTERM='apple_terminal'
+    fi
 else
     # Make sure the term is only 'rxvt' on non-cygwin system.
     if [[ $TERM = 'rxvt-cygwin-native' ]] ; then
@@ -14,10 +27,6 @@ else
     fi
     if [[ $TERM = 'xterm' && $COLORTERM = 'rxvt-xpm' ]] ; then
         export TERM='rxvt'
-    fi
-    if [[ "$TERM_PROGRAM" = 'iTerm.app' ]] ; then
-        export TERM='xterm'
-        export COLORTERM='iterm'
     fi
 fi
 
