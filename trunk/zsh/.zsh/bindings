@@ -1,47 +1,9 @@
 #!/usr/local/bin/zsh
 
-# zsh does vi right!
-if [[ -e ~/.vimrc ]] ; then
-    # fix ^w
-    export WORDCHARS="*?_-.[]~={}<>"
-    autoload backward-kill-word-match select-word-style match-words-by-style
-    zle -N backward-kill-word-match
-    select-word-style normal
-    match-words-by-style normal
+# Use Emacs style key bindings
+bindkey -e
 
-    # my widgets
-    for widget in up-to-vicmd down-to-viins accept-line-or-last-cmd; do
-        autoload $widget
-        zle -N $widget
-    done
-
-    bindkey -v
-    for keymap in v a; do
-#        bindkey -$keymap ^m  accept-line-or-last-cmd
-        bindkey -$keymap ^p  push-line-or-edit
-        bindkey -$keymap ^a  vi-beginning-of-line
-        bindkey -$keymap ^e  vi-end-of-line
-        bindkey -$keymap ^u  kill-whole-line
-        bindkey -$keymap ^xh run-help
-        bindkey -$keymap ^f  history-incremental-search-backward
-        bindkey -$keymap ^w  backward-kill-word-match
-        bindkey -$keymap ^k  up-to-vicmd
-        bindkey -$keymap ^j  down-to-viins
-        # Home
-        bindkey -$keymap '[7~'  'vi-beginning-of-line'
-        # End
-        bindkey -$keymap '[8~'  'vi-end-of-line'
-        # Delete
-        bindkey -$keymap '[3~'  'vi-delete-char'
-        # Insert
-        bindkey -$keymap '[2~'  'overwrite-mode'
-        # PgUp
-        bindkey -$keymap '[5~'  'history-beginning-search-backward'
-        # PgDown
-        bindkey -$keymap '[6~'  'history-beginning-search-forward'
-    done
-elif [[ -e ~/.emacs ]] ; then
-    bindkey -e
-fi
-
-# Make history searches use the text that has already been typed in the search
+# PgUp - Search History previous
+bindkey -$keymap '[5~'  'history-beginning-search-backward'
+# PgDown - Search History next
+bindkey -$keymap '[6~'  'history-beginning-search-forward'

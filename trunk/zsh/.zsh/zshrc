@@ -16,7 +16,9 @@ fi
 # history stuff
 HISTSIZE=1000
 SAVEHIST=1000
-HISTFILE=~/.history
+if [[ -d /home/$USER ]] ; then
+    HISTFILE=/home/$USER/.history
+fi
 setopt append_history 
 setopt inc_append_history 
 setopt extended_history 
