@@ -7,7 +7,11 @@ setopt pushd_minus
 setopt pushd_silent
 setopt pushd_ignore_dups
 
-cdhist=$HOME/.cdhist
+if [[ -e /home/$USER ]] ; then
+    cdhist=/home/$USER/.cdhist
+else
+    cdhist=/tmp/.cdhist-$USER
+fi
 
 if [[ $OSNAME = 'CYGWIN_NT-5.1' || $OSNAME = 'CYGWIN_NT-5.0' ]] ; then
     if [[ -e /bin/perl.cygwin.exe ]] ; then
