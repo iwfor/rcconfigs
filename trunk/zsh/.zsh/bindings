@@ -4,6 +4,8 @@
 bindkey -e
 
 # PgUp - Search History previous
-bindkey -$keymap '[5~'  'history-beginning-search-backward'
+bindkey -e '[5~'  'history-beginning-search-backward'
 # PgDown - Search History next
-bindkey -$keymap '[6~'  'history-beginning-search-forward'
+bindkey -e '[6~'  'history-beginning-search-forward'
+# ^P - Push the current command and start a new command
+bindkey -e ^p  push-line-or-edit
