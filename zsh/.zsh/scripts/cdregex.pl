@@ -6,7 +6,7 @@ use strict;
 
 my $regex = shift;
 my @dirs;
-my $cdhist = "$ENV{'HOME'}/.cdhist";
+my $cdhist = $ENV{'cdhist'} || "$ENV{'HOME'}/.cdhist";
 
 if ((not -e $cdhist) || ($regex eq '')) {
     print ".\n";

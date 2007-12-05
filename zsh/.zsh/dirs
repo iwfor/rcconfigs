@@ -7,10 +7,18 @@ setopt pushd_minus
 setopt pushd_silent
 setopt pushd_ignore_dups
 
+# Try to make sure USER is set
+if [[ "$USER" == "" ]] ; then
+    USER=$USERNAME
+fi
+if [[ "$USER" == "" ]] ; then
+    USER=`username`
+fi
+
 if [[ -e /home/$USER ]] ; then
-    cdhist=/home/$USER/.cdhist
+    export cdhist=/home/$USER/.cdhist
 else
-    cdhist=/tmp/.cdhist-$USER
+    export cdhist=/tmp/$USER-cdhist
 fi
 
 if [[ $OSNAME = 'CYGWIN_NT-5.1' || $OSNAME = 'CYGWIN_NT-5.0' ]] ; then
