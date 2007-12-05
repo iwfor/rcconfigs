@@ -1,3 +1,6 @@
+# Disable the global Zsh configuration file
+unset global_rcs
+
 # keep some arrays unique
 typeset -U path
 typeset -U fpath
@@ -34,12 +37,14 @@ setopt no_clobber
 setopt hist_allow_clobber
 
 # other options
-setopt NO_beep
-setopt auto_cd
-setopt auto_list
+setopt no_beep                  # Turn it off, puh-lease
+setopt auto_cd                  # Cd into directory if name is specified
+setopt auto_list                # List options on ambiguous completion
 setopt multios
-setopt NO_correct 
-setopt NO_correct_all
+setopt no_correct               # Do not correct spelling
+setopt no_correct_all           # Do not try to correct spelling of all arguments
+setopt interactive_comments     # Allow comments on command line
+setopt no_hup                   # Do not send HUP signal to jobs when exiting
 
 # add some path/man directories
 path=(~/bin ~/local/bin $path)
