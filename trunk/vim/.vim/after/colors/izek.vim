@@ -48,7 +48,7 @@ hi Constant ctermfg=DarkYellow guifg=yellow
 hi String ctermfg=Green guifg=lightgreen
 hi PreProc ctermfg=Yellow guifg=lightgreen gui=none
 hi Statement cterm=bold ctermfg=yellow gui=none guifg=yellow
-hi Identifier ctermfg=Cyan guifg=green
+hi Identifier ctermfg=Cyan guifg=lightgreen
 hi Type gui=none guifg=#eeaaaa
 
 " Comment colors
