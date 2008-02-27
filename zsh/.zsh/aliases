@@ -126,7 +126,7 @@ findcscopeout() {
             if [ $OSTYPE = "cygwin" ]; then
                 export CSCOPE_DB=`cygpath -m $TRYDIR/cscope.out`
             else
-                export CSCOPE_DB=`$TRYDIR/cscope.out`
+                export CSCOPE_DB=$TRYDIR/cscope.out
             fi
             break
         fi
