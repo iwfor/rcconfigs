@@ -4,5 +4,7 @@
 typeset -U ssh_hosts
 
 # suck in hostnames from known_hosts
-ssh_hosts=(`awk '{print $1}' < $HOME/.ssh/known_hosts | sed "s/,/ /"` $hosts)
+if [[ -e $HOME/.ssh/known_hosts ]] ; then
+    ssh_hosts=(`awk '{print $1}' < $HOME/.ssh/known_hosts | sed "s/,/ /"` $hosts)
+fi
 zstyle ':completion:*:(ssh|scp|ping|traceroute|telnet|rsh|sftp|ftp|lftp):*' hosts $ssh_hosts
