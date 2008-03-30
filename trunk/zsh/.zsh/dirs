@@ -15,11 +15,15 @@ if [[ "$USER" == "" ]] ; then
     USER=`username`
 fi
 
-if [[ -e /home/$USER ]] ; then
-    export cdhist=/home/$USER/.cdhist
-else
-    export cdhist=/tmp/$USER-cdhist
+if [[ "$HOSTNAME" == "" ]] ; then
+    HOSTNAME=`hostname`
 fi
+
+export cdhist=$HOME/.cdhist/$HOSTNAME
+if [[ -f $HOME/.cdhist ]] ; then
+    rm -f $HOME/.cdhist
+fi
+mkdir -p $HOME/.cdhist
 
 if [[ $OSNAME = 'CYGWIN_NT-5.1' || $OSNAME = 'CYGWIN_NT-5.0' ]] ; then
     if [[ -e /bin/perl.cygwin.exe ]] ; then
@@ -46,5 +50,5 @@ cd () {
 
     # Prepend last directory to the history list
     $PERL ~/.zsh/scripts/pushd.pl "$OLDPWD"
-    chmod 600 $cdhist
+    chmod 700 $cdhist
 }

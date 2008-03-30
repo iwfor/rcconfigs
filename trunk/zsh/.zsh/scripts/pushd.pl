@@ -6,7 +6,7 @@ use strict;
 exit if !scalar(@ARGV);
 
 my $path = shift;
-my $cdhist = "$ENV{'HOME'}/.cdhist";
+my $cdhist = $ENV{'cdhist'} || exit;
 srand(time ^ $$);
 
 # Read the existing file
