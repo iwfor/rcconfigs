@@ -94,7 +94,7 @@ else
     else
         gvim () {
             findcscopeout
-            nohup \gvim $* > /dev/null 2>&1 &
+            nohup \gvim --servername `hostname` $* > /dev/null 2>&1 &
         }
     fi
     deltree () { \
@@ -111,7 +111,7 @@ else
 fi
 
 # Always open files in the same instance of GVim
-alias ed="gvim --remote-tab"
+alias ed="gvim --servername `hostname` --remote-tab"
 
 switchenv () {
     `$HOME/.zsh/scripts/switchenv.pl $1`
