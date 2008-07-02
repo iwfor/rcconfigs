@@ -124,6 +124,9 @@ nnoremap <silent> <F7> :Tlist<CR>
 command Q :q
 command Wq :wq
 command WQ :wq
+command Tabn :tabn
+command Tabp :tabp
+command Tabnew :tabnew
 
 command ReloadDocs :helptags ~/.vim/doc
 
