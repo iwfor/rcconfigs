@@ -47,7 +47,7 @@ unless $0.match(/script\/server/)
   require 'irb/completion'
   ARGV.concat [ "--readline", "--prompt-mode", "simple" ]
 
-  def uptime system('uptime') { |x| puts x } end
+  def uptime() system('uptime') { |x| puts x } end
   def ls(*args) system('ls', '-sF', *args) { |x| puts x } end
   def dir(*args) system('dir', '-lF', *args) { |x| puts x } end
 
