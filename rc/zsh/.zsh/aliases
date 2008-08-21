@@ -111,7 +111,7 @@ else
 fi
 
 # Always open files in the same instance of GVim
-alias ed="gvim --servername `hostname` --remote-tab"
+alias ed="gvim --remote-tab"
 
 switchenv () {
     `$HOME/.zsh/scripts/switchenv.pl $1`
