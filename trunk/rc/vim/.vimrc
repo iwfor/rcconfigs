@@ -134,12 +134,13 @@ if has("gui_macvim")
   let macvim_hig_shift_movement = 1
 endif
 
-autocmd FileType perl,sh,vim,tcl,java,html,css,jam,xml,xsl,zsh,tcsh,sh,bash,nsis       call ProgrammingSettings()
-autocmd FileType c,cpp                                                                 call CxxSettings()
-autocmd FileType python,yaml                                                           call TwoSpaceSettings()
-autocmd FileType ruby,eruby                                                            call RubySettings()
-autocmd FileType mail,text                                                             call PlainTextSettings()
-autocmd FileType make                                                                  call MakefileSettings()
+autocmd FileType sh,vim,tcl,java,html,css,jam,xml,xsl,zsh,tcsh,sh,bash,nsis     call ProgrammingSettings()
+autocmd FileType c,cpp                                                          call CxxSettings()
+autocmd FileType perl                                                           call TwoSpaceSettings() 
+autocmd FileType python,yaml                                                    call TwoSpaceSettings()
+autocmd FileType ruby,eruby                                                     call RubySettings()
+autocmd FileType mail,text                                                      call PlainTextSettings()
+autocmd FileType make                                                           call MakefileSettings()
 
 " Fix the backspace
 "set t_kb=
