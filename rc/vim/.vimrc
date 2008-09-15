@@ -142,7 +142,14 @@ autocmd FileType ruby,eruby                                                     
 autocmd FileType mail,text                                                      call PlainTextSettings()
 autocmd FileType make                                                           call MakefileSettings()
 
-" Fix the backspace
+" These are the other Ruby file types
+autocmd BufRead,BufNewFile Rakefile set filetype=ruby
+autocmd BufRead,BufNewFile rakefile set filetype=ruby
+autocmd BufRead,BufNewFile *.rake   set filetype=ruby
+autocmd BufRead,BufNewFile .irbrc   set filetype=ruby
+autocmd BufRead,BufNewFile *.rjs    set filetype=ruby
+
+" Fix the backspace (This can vary from platform to platform depending on terminal)
 "set t_kb=
 "set t_kD=
 
