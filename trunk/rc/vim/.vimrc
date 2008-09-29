@@ -134,13 +134,14 @@ if has("gui_macvim")
   let macvim_hig_shift_movement = 1
 endif
 
-autocmd FileType sh,vim,tcl,java,html,css,jam,xml,xsl,zsh,tcsh,sh,bash,nsis     call ProgrammingSettings()
-autocmd FileType c,cpp                                                          call CxxSettings()
-autocmd FileType perl                                                           call TwoSpaceSettings() 
-autocmd FileType python,yaml                                                    call TwoSpaceSettings()
-autocmd FileType ruby,eruby                                                     call RubySettings()
-autocmd FileType mail,text                                                      call PlainTextSettings()
-autocmd FileType make                                                           call MakefileSettings()
+autocmd FileType sh,tcl,java,jam,zsh,tcsh,sh,bash,nsis  call ProgrammingSettings()
+autocmd FileType c,cpp                                  call CxxSettings()
+autocmd FileType perl                                   call TwoSpaceSettings() 
+autocmd FileType python,yaml                            call TwoSpaceSettings()
+autocmd FileType html,xhtml,css,xml,xsl,vim             call TwoSpaceSettings()
+autocmd FileType ruby,eruby                             call RubySettings()
+autocmd FileType mail,text                              call PlainTextSettings()
+autocmd FileType make                                   call MakefileSettings()
 
 " These are the other Ruby file types
 autocmd BufRead,BufNewFile Rakefile set filetype=ruby
