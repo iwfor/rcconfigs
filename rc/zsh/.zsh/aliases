@@ -34,7 +34,8 @@ alias dir="command ls -AlF $LSCOLOROPT"
 alias l="command ls -AsF $LSCOLOROPT"
 
 # BitKeeper nicers
-alias bkst="bk sfiles -cx | sed 's/SCCS\/s\.//'"
+#alias bkst="bk sfiles -cx | sed 's/SCCS\/s\.//'"
+alias bkst="bk sfiles -cgvx"
 
 # random junk
 alias longmont-library='telnet 204.133.207.247'
