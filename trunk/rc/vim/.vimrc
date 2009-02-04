@@ -374,6 +374,11 @@ function AtEndOfLine ()
     endif
 endfunction
 
+function FormatDBMigration ()
+"  Align :[a_zA_Z_,]*
+"  :s/  *$//
+endfunction
+
 "
 " Try to do some magic with the HOME key, toggling between col 1 and first
 " character on line.
