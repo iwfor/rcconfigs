@@ -25,7 +25,12 @@
  column-number-mode t             ; display column number in mode line
  enable-recursive-minibuffers t   ; allow multiple minibuffers
  echo-keystrokes 0.1              ; show unfinished keystrokes early
- disabled-command-hook nil)       ; Enable commands disabled by default for novice users
+ disabled-command-hook nil        ; Enable commands disabled by default for novice users
+)
+
+;(setq user-login-name "iforaker")
+;(setq vc-handled-backends (RCS CVS SVN SCCS Bzr Git Hg Mtn Arch MCVS))
+(setq vc-handled-backends (quote ("RCS" "CVS" "SVN" "Bzr" "Git" "Hg" "Mtn" "Arch" "MCVS")))
 
 ;; Aliases
 (defalias 'yes-or-no-p 'y-or-n-p)
@@ -62,8 +67,8 @@
 ;; (semantic-load-enable-semantic-debugging-helpers)
 
 ;; ECB (Emacs Code Browser)
-(require 'ecb)
-;;(ecb-activate)
+;(require 'ecb)
+;(ecb-activate)
 
 ;; Window Fringes
 (require 'fringe)
