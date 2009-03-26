@@ -1,3 +1,3 @@
 #!/bin/sh
 
-port install zsh
+port install zsh-devel

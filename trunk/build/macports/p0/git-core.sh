@@ -1,3 +1,3 @@
 #!/bin/sh
 
-port install git-core
+port install git-core +svn
