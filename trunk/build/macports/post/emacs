@@ -1,0 +1,5 @@
+#!/usr/bin/env perl
+
+unless (-e '/opt/local/bin/emacs') {
+  system('ln -s /Applications/MacPorts/Emacs.app/Contents/MacOS/Emacs /opt/local/bin/emacs');
+}
