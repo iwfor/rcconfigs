@@ -1,0 +1,8 @@
+#!/usr/bin/env perl
+
+if (-e '/Library/LaunchDaemons/org.macports.postgresql83-server.plist') {
+  system('launchctl load -w /Library/LaunchDaemons/org.macports.postgresql83-server.plist');
+}
+system('mkdir -p /opt/local/var/db/postgresql83/defaultdb');
+system('chown postgres:postgres /opt/local/var/db/postgresql83/defaultdb');
+system('su postgres -c "/opt/local/lib/postgresql83/bin/initdb -D /opt/local/var/db/postgresql83/defaultdb"');
