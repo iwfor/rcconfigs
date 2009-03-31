@@ -21,8 +21,9 @@ ports = [
   {
     '/opt/local/lib/postgresql83/bin/postmaster' => 'postgresql83-server',
     '/opt/local/bin/sloccount' => 'sloccount',
-    '/opt/local/bin/mogrify' => 'ImageMagick'
-             },
+    '/opt/local/bin/mogrify' => 'ImageMagick',
+    '/opt/local/lib/ruby/gems/1.8/gems/gd2-*' => 'rb-gd2'
+  },
   {
     '/opt/local/lib/ruby/vendor_ruby/1.8/i686-darwin9/postgres.bundle' => 'rb-postgres'
   }
