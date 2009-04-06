@@ -1,8 +1,14 @@
-#!/usr/bin/env perl
+#!/bin/sh
 
-if (-e '/Library/LaunchDaemons/org.macports.postgresql83-server.plist') {
-  system('launchctl load -w /Library/LaunchDaemons/org.macports.postgresql83-server.plist');
-}
-system('mkdir -p /opt/local/var/db/postgresql83/defaultdb');
-system('chown postgres:postgres /opt/local/var/db/postgresql83/defaultdb');
-system('su postgres -c "/opt/local/lib/postgresql83/bin/initdb -D /opt/local/var/db/postgresql83/defaultdb"');
+PGVER=83
+
+mkdir -p /opt/local/var/db/postgresql${PGVER}/defaultdb
+chown postgres:postgres /opt/local/var/db/postgresql${PGVER}/defaultdb
+ln -nfs /opt/local/lib/postgresql${PGVER} /opt/local/lib/postgresql
+
+cd /
+su postgres -c "/opt/local/lib/postgresql${PGVER}/bin/initdb -D /opt/local/var/db/postgresql${PGVER}/defaultdb"
+
+launchctl load -w /Library/LaunchDaemons/org.macports.postgresql${PGVER}-server.plist
+
+su postgres -c "/opt/local/lib/postgresql${PGVER}/bin/createuser -s $USER"
