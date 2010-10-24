@@ -57,7 +57,7 @@ setopt prompt_subst
 prompt_newline=$'\n%{\r%}'
 prompt_backtick='\`'
 #PS1="%{$fg[cyan]%}.----(%{$fg[blue]%} %n%{$fg[red]%}@%{$fg[green]%}%m %{$fg[cyan]%})----%{$fg[cyan]%}(%{$fg[magenta]%} %? %{$fg[cyan]%})----%{$fg[cyan]%}(%{$fg[yellow]%} %~ %{$fg[cyan]%})${prompt_newline}${prompt_backtick}--%{$reset_color%}%B>%b "
-PS1="%{$fg[yellow]%}%n%{$fg[red]%}@%{$fg[green]%}%m%{$fg[red]%}:%{$fg[cyan]%}%~%{$fg[red]%}>%{$reset_color%}"
+PS1="%{$fg[yellow]%}%n%{$fg[red]%}@%{$fg[green]%}%m%{$fg[red]%}:%{$fg[cyan]%}%~\$(git branch 2> /dev/null | grep -e '\*' | sed 's/^..\(.*\)/[\1]/')%{$fg[red]%}>%{$reset_color%}"
 PS2="%{$fg[yellow]%}%_%{$fg[red]%}>%{$reset_color%}"
 # fix vim syntax `"
 

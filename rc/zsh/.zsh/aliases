@@ -20,6 +20,9 @@ alias s='screen -DR'
 alias h='history'
 alias x='startx &; logout'
 alias f='find . -name'
+alias e='emacsclient -n'
+
+alias rot13="tr '[A-Za-z]' '[N-ZA-Mn-za-m]'"
 
 # ls command
 if [[ $OSNAME = "FreeBSD" || $OSNAME = "Darwin" ]]; then
