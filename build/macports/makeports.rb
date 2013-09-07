@@ -5,26 +5,30 @@ ports = [
     '/opt/local/bin/git' => 'git-core +svn',
     '/opt/local/bin/lftp' => 'lftp',
     '/opt/local/bin/7za' => 'p7zip',
-    '/opt/local/bin/ruby' => 'ruby',
+#    '/opt/local/bin/ruby' => 'ruby',
+    '/opt/local/bin/ruby1.9' => 'ruby19',
     '/opt/local/bin/svn' => 'subversion',
-#    '/opt/local/bin/zsh' => 'zsh-devel'
+#    '/opt/local/bin/zsh' => 'zsh-devel',
+    '/opt/local/bin/wget' => 'wget',
+    '/opt/local/bin/curl' => 'curl',
   },
   {
-    '/opt/local/bin/gem' => 'rb-rubygems',
-    '/opt/local/bin/rails' => 'rb-rails',
-    '/opt/local/lib/ruby/gems/1.8/bin/mongrel_rails' => 'rb-mongrel',
+#    '/opt/local/bin/gem' => 'rb-rubygems',
+#    '/opt/local/bin/rails' => 'rb-rails',
+#    '/opt/local/lib/ruby/gems/1.8/bin/mongrel_rails' => 'rb-mongrel',
     '/opt/local/bin/aspell' => 'aspell',
     '/opt/local/share/aspell/en.multi' => 'aspell-dict-en',
-    '/opt/local/bin/emacsclient' => 'emacs +atsui +carbon',
+#    '/opt/local/bin/emacsclient' => 'emacs +atsui +carbon',
     '/opt/local/bin/gpg' => 'gnupg',
     '/opt/local/bin/ispell' => 'ispell'
   },
   {
-    '/opt/local/lib/postgresql83/bin/postmaster' => 'postgresql83-server',
+#    '/opt/local/lib/postgresql83/bin/postmaster' => 'postgresql83-server',
+    '/opt/local/bin/mongo' => 'mongodb',
     '/opt/local/bin/sloccount' => 'sloccount',
     '/opt/local/bin/mogrify' => 'ImageMagick +rsvg',
-    '/opt/local/lib/ruby/gems/1.8/gems/gd2-*' => 'rb-gd2',
-    '/opt/local/lib/ruby/vendor_ruby/1.8/RMagick.rb' => 'rb-rmagick',
+#    '/opt/local/lib/ruby/gems/1.8/gems/gd2-*' => 'rb-gd2',
+#    '/opt/local/lib/ruby/vendor_ruby/1.8/RMagick.rb' => 'rb-rmagick',
     '/opt/local/bin/gs' => 'ghostscript'
   },
   {
@@ -33,7 +37,8 @@ ports = [
 ];
 
 gems = [
-  {'/opt/local/lib/ruby/gems/1.8/gems/wirble-*' => 'wirble'}
+#  {'/opt/local/lib/ruby/gems/1.8/gems/wirble-*' => 'wirble'}
+  {'/opt/local/lib/ruby1.9/gems/1.9.1/gems/wirble-*' => 'wirble'}
 ];
 
 errors = []
