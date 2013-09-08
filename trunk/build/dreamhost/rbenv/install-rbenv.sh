@@ -37,6 +37,7 @@ TMPDIR=~/.rbenv/BUILD_TEMP rbenv install $NEW_RUBY_VERSION
 # Now everything is set up properly, you should be able to set your
 # directory to use the new ruby:
 rbenv local $NEW_RUBY_VERSION
+rbenv rehash
  
 # Bundler isn't included with ruby, so install it first:
 gem install bundler
@@ -45,10 +46,10 @@ gem install bundler
 rbenv rehash
  
 # Then use it to install the rest of your gems:
-bundle install
+#bundle install
  
 # Create the "log" dir in for the file containing the stderr of your dispatch.fcgi script:
-mkdir -p log
+#mkdir -p log
 
 echo 'PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.zshrc_local
 echo 'eval "$($HOMe/.rbenv/bin/rbenv init -)"' >> ~/.zshrc_local
