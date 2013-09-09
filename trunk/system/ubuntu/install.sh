@@ -10,11 +10,14 @@ sudo apt-get install -y \
     git \
     gnupg \
     lftp \
+    libsqlite3-dev \
     libssl-dev \
     libtool \
     libyaml-dev \
+    nodejs \
     p7zip-full \
     screen \
+    sqlite3 \
     subversion \
     tmux \
     vim \
