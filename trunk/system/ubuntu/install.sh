@@ -1,5 +1,7 @@
 #!/bin/bash
 
+echo "America/Denver" | sudo tee /etc/timezone
+sudo dpkg-reconfigure --frontend noninteractive tzdata
 sudo apt-get update
 sudo apt-get upgrade -y
 sudo apt-get install -y \
