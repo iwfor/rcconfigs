@@ -10,6 +10,7 @@ sudo apt-get install -y \
     git \
     gnupg \
     lftp \
+    libreadline-dev \
     libsqlite3-dev \
     libssl-dev \
     libtool \
