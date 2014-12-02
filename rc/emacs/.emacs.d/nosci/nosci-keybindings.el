@@ -114,3 +114,7 @@
 (if (fboundp 'elscreen-create) 
     (define-key global-map "\C-z\C-z" 'elscreen-toggle)
   (define-key global-map "\C-z" nil))
+
+(define-key global-map (kbd "C-?") 'redo)
+(define-key global-map (kbd "C-<next>") 'next-buffer)
+(define-key global-map (kbd "C-<prior>") 'previous-buffer)

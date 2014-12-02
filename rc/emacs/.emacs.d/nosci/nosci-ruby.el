@@ -23,9 +23,9 @@
            (repeat . t)))))
 
 (defun nosci-ruby-comment-bar (&optional without-newline)
-  "Create 80 pound signs"
+  "Create pound signs up to column 78"
   (interactive "P")
-  (insert-char ?# 80)
+  (insert-char ?# (- 78 (current-column)))
   (if without-newline (beginning-of-line) (newline))
   (indent-according-to-mode))
 
