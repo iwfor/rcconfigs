@@ -1,3 +1,50 @@
+set nocompatible              " be iMproved, required
+filetype off                  " required
+
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+" alternatively, pass a path where Vundle should install plugins
+"call vundle#begin('~/some/path/here')
+
+" let Vundle manage Vundle, required
+Plugin 'gmarik/Vundle.vim'
+Plugin 'beloglazov/vim-online-thesaurus'
+"Plugin 'reedes/vim-wordy'
+Plugin 'reedes/vim-textobj-quote'
+
+" The following are examples of different formats supported.
+" Keep Plugin commands between vundle#begin/end.
+" plugin on GitHub repo
+"Plugin 'tpope/vim-fugitive'
+" plugin from http://vim-scripts.org/vim/scripts.html
+"Plugin 'L9'
+" Git plugin not hosted on GitHub
+"Plugin 'git://git.wincent.com/command-t.git'
+" git repos on your local machine (i.e. when working on your own plugin)
+"Plugin 'file:///home/gmarik/path/to/plugin'
+" The sparkup vim script is in a subdirectory of this repo called vim.
+" Pass the path to set the runtimepath properly.
+"Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
+" Avoid a name conflict with L9
+"Plugin 'user/L9', {'name': 'newL9'}
+
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
+filetype plugin indent on    " required
+
+" To ignore plugin indent changes, instead use:
+"filetype plugin on
+"
+" Brief help
+" :PluginList       - lists configured plugins
+" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
+" :PluginSearch foo - searches for foo; append `!` to refresh local cache
+" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
+"
+" see :h vundle for more details or wiki for FAQ
+" Put your non-Plugin stuff after this line
+
 "set mouse=a
 set mousemodel=popup_setpos
 set novb
@@ -13,6 +60,8 @@ set autoindent
 
 " Allow Vim to open a LOT of tabs at one time
 set tabpagemax=100
+
+let g:rsenseHome="/opt/rsense-0.2"
 
 " Use smart case checking in searches.  Requires both ignorecase and smartcase.
 set ignorecase
@@ -40,7 +89,43 @@ set viminfo='20,\"50    " read/write a .viminfo file, don't store more than 50 l
 set history=50
 set number
 set laststatus=2
-set statusline=%-f\ %-n%=[%Y%R%M][0x%B/L%l/C%c/B%o/%p%%]
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Here begins my automated wordcount addition.
+" This combines several ideas from:
+" http://stackoverflow.com/questions/114431/fast-word-count-function-in-vim
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:word_count="<unknown>"
+function WordCount()
+  return g:word_count
+endfunction
+function UpdateWordCount()
+  let lnum = 1
+  let n = 0
+  while lnum <= line('$')
+    let n = n + len(split(getline(lnum)))
+    let lnum = lnum + 1
+  endwhile
+  let g:word_count = n
+endfunction
+" Update the count when cursor is idle in command or insert mode.
+" Update when idle for 1000 msec (default is 4000 msec).
+set updatetime=1000
+augroup WordCounter
+  au! CursorHold,CursorHoldI * call UpdateWordCount()
+augroup END
+" Set statusline, shown here a piece at a time
+highlight User1 ctermbg=green guibg=green ctermfg=black guifg=black
+" Old Status Line
+"set statusline=%-f\ %-n%=[%Y%R%M][0x%B/L%l/C%c/B%o/%p%%]
+" Status Line with word count
+set statusline+=%<%F          " file name, cut if needed at start
+set statusline+=\ %-n
+set statusline+=%=            " separator from left to right justified
+set statusline+=[%Y%R%M]      " File Type, R/O Flag, Modified Flag
+set statusline+=[%{WordCount()}W]
+set statusline+=[0x%B/L%l/C%c/B%o/%p%%]
+
 set makeprg=make
 "# virtualedit: allow cursor positioning where no character in certain modes
 set virtualedit=block
@@ -82,7 +167,6 @@ nmap <c-n> :n<cr>
 imap <c-a> <c-o>^
 imap <c-e> <c-o>$
 
-
 " Integrate aspell with vim
 set autowrite
 map <Leader>s <Esc>:!aspell -c --dont-backup "%"<CR>:e! "%"<CR><CR>
@@ -117,8 +201,6 @@ abbreviate #d #define
 " Fix common spelling mistakes
 abbr teh the
 abbr Teh The
-abbr accross across
-abbr Accross Across
 
 nnoremap <silent> <F7> :Tlist<CR>
 command Q :q
@@ -134,26 +216,6 @@ if has("gui_macvim")
   let macvim_hig_shift_movement = 1
 endif
 
-autocmd FileType sh,tcl,java,jam,zsh,tcsh,sh,bash,nsis  call ProgrammingSettings()
-autocmd FileType c,cpp                                  call CxxSettings()
-autocmd FileType perl                                   call TwoSpaceSettings() 
-autocmd FileType python,yaml                            call TwoSpaceSettings()
-autocmd FileType html,xhtml,css,xml,xsl,vim             call TwoSpaceSettings()
-autocmd FileType ruby,eruby                             call RubySettings()
-autocmd FileType mail,text                              call PlainTextSettings()
-autocmd FileType make                                   call MakefileSettings()
-
-" These are the other Ruby file types
-autocmd BufRead,BufNewFile Rakefile set filetype=ruby
-autocmd BufRead,BufNewFile rakefile set filetype=ruby
-autocmd BufRead,BufNewFile *.rake   set filetype=ruby
-autocmd BufRead,BufNewFile .irbrc   set filetype=ruby
-autocmd BufRead,BufNewFile *.rjs    set filetype=ruby
-
-" Fix the backspace (This can vary from platform to platform depending on terminal)
-"set t_kb=
-"set t_kD=
-
 " Switch syntax highlighting on, when the terminal has colors
 " Also switch on highlighting the last used search pattern.
 if &t_Co > 2 || has("gui_running")
@@ -165,6 +227,30 @@ if &t_Co > 2 || has("gui_running")
     colorscheme izek
 
 endif
+
+" These are the other Ruby file types
+autocmd BufRead,BufNewFile Rakefile set filetype=ruby
+autocmd BufRead,BufNewFile rakefile set filetype=ruby
+autocmd BufRead,BufNewFile *.rake   set filetype=ruby
+autocmd BufRead,BufNewFile .irbrc   set filetype=ruby
+autocmd BufRead,BufNewFile *.rjs    set filetype=ruby
+
+" Force other file types
+autocmd BufRead,BufNewFile *.md     set filetype=markdown
+
+autocmd FileType sh,tcl,java,jam,zsh,tcsh,sh,bash,nsis  call ProgrammingSettings()
+autocmd FileType c,cpp                                  call CxxSettings()
+autocmd FileType perl                                   call TwoSpaceSettings() 
+autocmd FileType python,yaml                            call TwoSpaceSettings()
+autocmd FileType html,xhtml,css,xml,xsl,vim             call TwoSpaceSettings()
+autocmd FileType ruby,eruby,js                          call RubySettings()
+autocmd FileType mail,text                              call PlainTextSettings()
+autocmd FileType make                                   call MakefileSettings()
+autocmd FileType markdown                               call WritingSettings()
+
+" Fix the backspace (This can vary from platform to platform depending on terminal)
+"set t_kb=
+"set t_kD=
 
 augroup cprog
     " Remove all cprog autocommands
@@ -253,7 +339,7 @@ function PlainTextSettings ()
     setlocal tabstop=4
     setlocal noexpandtab
     setlocal wrap
-    setlocal spell
+    setlocal spell spelllang=en_us
     setlocal nonumber
 endfunction
 
@@ -290,9 +376,48 @@ function MakefileSettings()
 "    imap <buffer> { {}<C-O>i
 endfunction
 
+function WritingSettings()
+    " Why doesn't this load by default in gvim?
+    syntax region potionString start=/\v"/ end=/\v"/
+    highlight link potionString String
+    hi String guifg=#ffff00
+    " hide line numbers
+    set nonumber
+    setlocal wrap
+    setlocal spell spelllang=en_us
+    setlocal nonumber
+endfunction
+
+func! WordProcessorSettings()
+  " Don't break a line after a one-letter word.  It's broken before it instead (if possible).
+  setlocal formatoptions=1 
+  " Use physical tabs instead of spaces.
+  setlocal noexpandtab
+  setlocal spell spelllang=en_us 
+  set thesaurus+=/home/iforaker/.vim/thesaurus/mthesaur.txt
+  set complete+=s
+  " Replace Vim's default formatter with par (must be installed)
+  set formatprg=par
+  setlocal wrap 
+  setlocal linebreak
+  setlocal showbreak=+
+  " Fix common spelling mistakes
+  abbr accross across
+  abbr Accross Across
+  abbr floding folding
+  abbr Im I'm
+  abbr shouldnt shouldn't
+  abbr thats that's
+  abbr wouldnt wouldn't
+  abbr shouldve should've
+  abbr wouldve would've
+endfu
+com! WP call WordProcessorSettings()
+
 function RubySettings ()
     call TwoSpaceSettings()
     set dictionary+=~/.vim/dictionary/ruby.txt
+    let g:rsenseUseOmniFunc=1
 
     imap <buffer> <CR> <C-R>=RubyEndToken()<CR>
 endfunction
@@ -383,14 +508,15 @@ endfunction
 " Try to do some magic with the HOME key, toggling between col 1 and first
 " character on line.
 "
-"imap <HOME> <C-R>=ISpecialHomeKey()<CR>
-"function ISpecialHomeKey()
-"    if col('.') == 1
-"        return "\<c-o>^"
-"    else
-"        return "\<c-o>0"
-"    endif
-"endfunction
+function ISpecialHomeKey()
+    if col('.') == 1
+      normal! ^
+    else
+      normal! 0
+    endif
+endfunction
+inoremap <silent> <home> <c-o>:call ISpecialHomeKey()<CR>
+noremap <silent> <home> :call ISpecialHomeKey()<CR>
 
 " Automagically change directories to the currently selected buffer.
 if exists('+autochdir')

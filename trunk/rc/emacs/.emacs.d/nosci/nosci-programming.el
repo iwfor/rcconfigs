@@ -23,7 +23,7 @@
   (set (make-local-variable 'comment-auto-fill-only-comments) t)
   (turn-on-auto-fill)
   (flyspell-prog-mode)
-  (font-lock-add-keywords nil '(("\\<\\(FIXME:\\|TODO:\\)" 1 nosci-fixme-face t)))
+  (font-lock-add-keywords nil '(("\\<\\(FIXME:\\|TODO:\\|XXX:\\)" 1 nosci-fixme-face t)))
   (local-set-key "\C-m" 'nosci-newline)
   (local-set-key "\t"   'nosci-smart-tab))
 
@@ -67,11 +67,15 @@
 ;; SQL Files
 (add-hook 'sql-mode-hook 'nosci-programming-mode-hook)
 
+;; Perl files
+(add-hook 'perl-mode-hook 'nosci-programming-mode-hook)
+
 ;; Make #! scripts executable after saving them
 (add-hook 'after-save-hook 'executable-make-buffer-file-executable-if-script-p)
 
 ;; I keep Ruby programming stuff in a separate file
 (load "~/.emacs.d/nosci/nosci-ruby")
+(load "~/.emacs.d/nosci/nosci-perl")
 
 ;; Great Subversion Integration
 (setq svn-restore-windows t) ;; needed only for dsvn

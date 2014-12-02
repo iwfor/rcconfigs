@@ -99,6 +99,7 @@ else
             nohup mvim $* > /dev/null 2>&1 &
         }
     else
+        alias start="xdg-open"
         gvim () {
             findcscopeout
             nohup \gvim --servername `hostname` $* > /dev/null 2>&1 &
