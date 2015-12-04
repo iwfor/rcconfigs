@@ -12,6 +12,13 @@ Plugin 'gmarik/Vundle.vim'
 Plugin 'beloglazov/vim-online-thesaurus'
 "Plugin 'reedes/vim-wordy'
 Plugin 'reedes/vim-textobj-quote'
+Plugin 'tpope/vim-commentary'
+Plugin 'bling/vim-airline'
+Plugin 'majutsushi/tagbar'
+Plugin 'tpope/vim-fugitive'
+Plugin 'airblade/vim-gitgutter'
+Plugin 'tpope/vim-surround'
+Plugin 'ecomba/vim-ruby-refactoring'
 
 " The following are examples of different formats supported.
 " Keep Plugin commands between vundle#begin/end.
@@ -126,6 +133,11 @@ set statusline+=[%Y%R%M]      " File Type, R/O Flag, Modified Flag
 set statusline+=[%{WordCount()}W]
 set statusline+=[0x%B/L%l/C%c/B%o/%p%%]
 
+" Airline status line configuration
+let g:airline#extensions#tabline#enabled = 1
+"let g:airline#extensions#tabline#left_sep = ' '
+"let g:airline#extensions#tabline#left_alt_sep = '|'
+
 set makeprg=make
 "# virtualedit: allow cursor positioning where no character in certain modes
 set virtualedit=block
@@ -160,6 +172,7 @@ set nofoldenable
 "#  F2 - Toggle line numbers
 nmap <F1> :nohls<cr>
 nmap <F2> :set nu!<cr>
+nmap <F8> :TagbarToggle<cr>
 
 
 "# Some common emacs mappings: ^N, ^A, ^E
@@ -246,7 +259,7 @@ autocmd FileType html,xhtml,css,xml,xsl,vim             call TwoSpaceSettings()
 autocmd FileType ruby,eruby,js                          call RubySettings()
 autocmd FileType mail,text                              call PlainTextSettings()
 autocmd FileType make                                   call MakefileSettings()
-autocmd FileType markdown                               call WritingSettings()
+autocmd FileType markdown                               call MarkdownSettings()
 
 " Fix the backspace (This can vary from platform to platform depending on terminal)
 "set t_kb=
@@ -348,6 +361,14 @@ function ProgrammingSettings ()
     setlocal softtabstop=4
     setlocal shiftwidth=4
     setlocal expandtab
+    call MapCommentatorQuickKey()
+endfunction
+
+function MapCommentatorQuickKey ()
+    " Map commentator to ^C
+    imap <c-c> gcc
+    nmap <c-c> gcc
+    vmap <c-c> gc
 endfunction
 
 function CxxSettings()
@@ -356,13 +377,15 @@ function CxxSettings()
     set dictionary+=~/.vim/dictionary/cxx_stdlib.txt
 
     imap <buffer> <CR> <C-R>=CxxEndToken()<CR>
+    set commentstring=//\ %s
 endfunction
 
 function TwoSpaceSettings()
-    setlocal tabstop=8
+    setlocal tabstop=2
     setlocal softtabstop=2
     setlocal shiftwidth=2
     setlocal expandtab
+    call MapCommentatorQuickKey()
 endfunction
 
 function MakefileSettings()
@@ -374,6 +397,12 @@ function MakefileSettings()
     " Put in a couple of common completions
 "    imap <buffer> ( ()<C-O>i
 "    imap <buffer> { {}<C-O>i
+endfunction
+
+function MarkdownSettings()
+    call WritingSettings()
+    call MapCommentatorQuickKey()
+    set commentstring=<!--\ %s\ -->
 endfunction
 
 function WritingSettings()
@@ -390,14 +419,14 @@ endfunction
 
 func! WordProcessorSettings()
   " Don't break a line after a one-letter word.  It's broken before it instead (if possible).
-  setlocal formatoptions=1 
+  "setlocal formatoptions=1 
   " Use physical tabs instead of spaces.
   setlocal noexpandtab
   setlocal spell spelllang=en_us 
   set thesaurus+=/home/iforaker/.vim/thesaurus/mthesaur.txt
   set complete+=s
   " Replace Vim's default formatter with par (must be installed)
-  set formatprg=par
+  "set formatprg=par
   setlocal wrap 
   setlocal linebreak
   setlocal showbreak=+
@@ -409,8 +438,11 @@ func! WordProcessorSettings()
   abbr shouldnt shouldn't
   abbr thats that's
   abbr wouldnt wouldn't
+  abbr Wouldnt Wouldn't
   abbr shouldve should've
   abbr wouldve would've
+  abbr weve we've
+  abbr Weve We've
 endfu
 com! WP call WordProcessorSettings()
 
