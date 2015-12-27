@@ -51,6 +51,7 @@ sudo apt-get install -y \
     vlc \
     w3m-img \
     whois \
+    xdotool \
     yasm \
     zlib1g-dev \
     zsh \
