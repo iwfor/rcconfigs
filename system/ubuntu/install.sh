@@ -34,6 +34,7 @@ sudo apt-get install -y \
     libvorbis-dev \
     libx264-dev \
     libyaml-dev \
+    mediainfo \
     mpg123 \
     mplayer \
     nodejs \
