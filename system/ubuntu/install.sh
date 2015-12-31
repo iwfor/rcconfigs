@@ -15,9 +15,9 @@ sudo apt-get install -y \
     git \
     gnupg \
     lftp \
-    libcurl4-openssl-dev \
     libavcodec-dev \
     libavutil-dev \
+    libcurl4-openssl-dev \
     libdvdread4 \
     libexpat-dev \
     libfaac-dev \
@@ -25,6 +25,7 @@ sudo apt-get install -y \
     libmp3lame-dev \
     libopencore-amrnb-dev \
     libopencore-amrwb-dev \
+    libotr5-bin \
     libreadline-dev \
     librtmp-dev \
     libsqlite3-dev \
@@ -37,8 +38,16 @@ sudo apt-get install -y \
     mediainfo \
     mpg123 \
     mplayer \
+    msttcorefonts \
     nodejs \
     p7zip-full \
+    pandoc \
+    pandoc-citeproc \
+    pidgin \
+    pidgin-dev \
+    pidgin-openpgp \
+    pidgin-otr \
+    pidgin-plugin-pack \
     pkg-config \
     python-pip \
     python-virtualenv \
@@ -46,7 +55,15 @@ sudo apt-get install -y \
     sqlite3 \
     subversion \
     texi2html \
+    texlive-fonts-extra \
+    texlive-fonts-recommended \
+    texlive-latex-extra \
+    texlive-latex-recommended \
+    texlive-luatex \
+    texlive-xetex \
+    thunderbird \
     tmux \
+    unzip \
     vim \
     vim-gtk \
     vlc \
@@ -57,6 +74,17 @@ sudo apt-get install -y \
     zlib1g-dev \
     zsh \
     ;
+
+hack_font_dir=~/.fonts/hack_mono/
+hack_release_major=2
+hack_release_minor=018
+hack_tarball=Hack-v${hack_release_major}_$hack_release_minor-otf.tar.gz
+mkdir -p $hack_font_dir
+wget --directory-prefix $hack_font_dir https://github.com/chrissimpkins/Hack/releases/download/v$hack_release_major.$hack_release_minor/$hack_tarball
+tar xvf $hack_font_dir/$hack_tarball -C $hack_font_dir
+rm $hack_font_dir/$hack_tarball
+
+sudo fc-cache -f -v
 
 # If in a country that allows it, install deCSS for DVD play back:
 #sudo /usr/share/doc/libdvdread4/install-css.sh
