@@ -45,51 +45,51 @@ alias longmont-library='telnet 204.133.207.247'
 
 if [[ $OSTYPE = "cygwin" ]]; then
 	if [[ $? = 0 ]]; then
-		gvim () { \
+		gvim () {
             findcscopeout
-            if [[ "z$*" = "z" ]] ; then \
-                nohup \gvim > /dev/null 2>&1 & ; \
-            else  \
-                nohup \gvim `cygpath -m -- $*` > /dev/null 2>&1 & ;\
-            fi \
+            if [[ "z$*" = "z" ]] ; then
+                nohup \gvim > /dev/null 2>&1 &
+            else
+                nohup \gvim `cygpath -m -- $*` > /dev/null 2>&1 &
+            fi
         }
 	fi
     alias start="cmd /c start"
     alias open="cmd /c start"
-    deltree () { \
-        for f in $* ; do\
+    deltree () {
+        for f in $* ; do
             if [[ -d "$f" ]]; then
-                echo "Removing $f..." ; \
-                time cmd /c "rd /s /q `cygpath -w $f`" ; \
-            elif [[ -f "$f" ]]; then \
-                echo "Removing $f..." ; \
-                cmd /c "del /f /q `cygpath -w $f`" ; \
-            fi \
-        done \
+                echo "Removing $f..."
+                time cmd /c "rd /s /q `cygpath -w $f`"
+            elif [[ -f "$f" ]]; then
+                echo "Removing $f..."
+                cmd /c "del /f /q `cygpath -w $f`"
+            fi
+        done
     }
-    packdir() { \
-        for f in $* ; do\
+    packdir() {
+        for f in $* ; do
             if [[ -d "$f" ]]; then
-                echo "Packing $f..." ; \
-                time compact /c "`cygpath -w $f`" ; \
-                time compact /c /a /i /s "`cygpath -w $f`\\\*" ; \
-            elif [[ -f "$f" ]]; then \
-                echo "Packing $f..." ; \
-                compact /c /i /a "`cygpath -w $f`" ; \
-            fi \
-        done \
+                echo "Packing $f..."
+                time compact /c "`cygpath -w $f`"
+                time compact /c /a /i /s "`cygpath -w $f`\\\*"
+            elif [[ -f "$f" ]]; then
+                echo "Packing $f..."
+                compact /c /i /a "`cygpath -w $f`"
+            fi
+        done
     }
-    unpackdir() { \
-        for f in $* ; do\
+    unpackdir() {
+        for f in $* ; do
             if [[ -d "$f" ]]; then
-                echo "Unpacking $f..." ; \
-                time compact /u "`cygpath -w $f`" ; \
-                time compact /u /a /i /s "`cygpath -w $f`\\\*" ; \
-            elif [[ -f "$f" ]]; then \
-                echo "Unpacking $f..." ; \
-                compact /u /i /a "`cygpath -w $f`" ; \
-            fi \
-        done \
+                echo "Unpacking $f..." ;
+                time compact /u "`cygpath -w $f`"
+                time compact /u /a /i /s "`cygpath -w $f`\\\*"
+            elif [[ -f "$f" ]]; then
+                echo "Unpacking $f..."
+                compact /u /i /a "`cygpath -w $f`"
+            fi
+        done
     }
 else
     if [[ $OSNAME = "Darwin" ]]; then
@@ -105,16 +105,16 @@ else
             nohup \gvim --servername `hostname` $* > /dev/null 2>&1 &
         }
     fi
-    deltree () { \
-        for f in $* ; do\
+    deltree () {
+        for f in $* ; do
             if [[ -d "$f" ]]; then
-                echo "Removing $f..." ; \
-                time rm -rf "$f" ; \
-            elif [[ -f "$f" ]]; then \
-                echo "Removing $f..." ; \
-                rm -f "$f" ; \
-            fi \
-        done \
+                echo "Removing $f..."
+                time rm -rf "$f"
+            elif [[ -f "$f" ]]; then
+                echo "Removing $f..."
+                rm -f "$f"
+            fi
+        done
     }
 fi
 
