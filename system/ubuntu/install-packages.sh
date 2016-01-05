@@ -63,6 +63,7 @@ sudo apt-get install -y \
     texlive-xetex \
     thunderbird \
     tmux \
+    unison \
     unzip \
     vim \
     vim-gtk \
@@ -88,6 +89,9 @@ sudo fc-cache -f -v
 
 # If in a country that allows it, install deCSS for DVD play back:
 #sudo /usr/share/doc/libdvdread4/install-css.sh
+
+# Add repository for graphics drivers
+sudo apt-add-repository -y ppa:graphics-drivers/ppa
 
 sudo add-apt-repository -y ppa:stebbins/handbrake-releases
 sudo apt-get update
