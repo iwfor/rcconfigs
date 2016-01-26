@@ -4,7 +4,7 @@ pkg install -y \
     curl \
     figlet \
     lftp \
-    perl \
+    perl5 \
     portupgrade \
     rsync \
     screen \
