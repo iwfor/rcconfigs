@@ -5,12 +5,14 @@ sudo dpkg-reconfigure --frontend noninteractive tzdata
 sudo apt-get update
 sudo apt-get upgrade -y
 sudo apt-get install -y \
+    arduino \
     autoconf \
     automake \
     build-essential \
     checkinstall \
     clang \
     curl \
+    dfu-programmer \
     fbreader \
     ghc \
     git \
