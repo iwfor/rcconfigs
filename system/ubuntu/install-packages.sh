@@ -85,7 +85,7 @@ sudo apt-get install -y \
 
 hack_font_dir=~/.fonts/hack_mono/
 hack_release_major=2
-hack_release_minor=018
+hack_release_minor=020
 hack_tarball=Hack-v${hack_release_major}_$hack_release_minor-otf.tar.gz
 mkdir -p $hack_font_dir
 wget --directory-prefix $hack_font_dir https://github.com/chrissimpkins/Hack/releases/download/v$hack_release_major.$hack_release_minor/$hack_tarball
