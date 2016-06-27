@@ -48,6 +48,7 @@ sudo apt-get install -y \
     p7zip-full \
     pandoc \
     pandoc-citeproc \
+    pass \
     pidgin \
     pidgin-dev \
     pidgin-openpgp \
