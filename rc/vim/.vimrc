@@ -252,6 +252,7 @@ autocmd BufRead,BufNewFile *.rjs    set filetype=ruby
 autocmd BufRead,BufNewFile *.md     set filetype=markdown
 
 autocmd FileType sh,tcl,java,jam,zsh,tcsh,sh,bash,nsis  call ProgrammingSettings()
+autocmd FileType fsx                                    call ProgrammingSettings()
 autocmd FileType c,cpp                                  call CxxSettings()
 autocmd FileType perl                                   call TwoSpaceSettings() 
 autocmd FileType python,yaml                            call TwoSpaceSettings()

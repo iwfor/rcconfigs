@@ -12,6 +12,7 @@ sudo apt-get install -y \
     clang \
     curl \
     fbreader \
+    ghc \
     git \
     gnupg \
     lftp \
@@ -19,7 +20,7 @@ sudo apt-get install -y \
     libavutil-dev \
     libcurl4-openssl-dev \
     libdvdread4 \
-    libexpat-dev \
+    libexpat1-dev \
     libfaac-dev \
     libgpac-dev \
     libmp3lame-dev \
@@ -37,8 +38,10 @@ sudo apt-get install -y \
     libyaml-dev \
     mediainfo \
     mpg123 \
+    mpc \
+    mpd \
     mplayer \
-    msttcorefonts \
+    ncmpcpp \
     nodejs \
     p7zip-full \
     pandoc \
@@ -63,6 +66,7 @@ sudo apt-get install -y \
     texlive-xetex \
     thunderbird \
     tmux \
+    ttf-mscorefonts-installer \
     unison \
     unzip \
     vim \
@@ -86,6 +90,10 @@ tar xvf $hack_font_dir/$hack_tarball -C $hack_font_dir
 rm $hack_font_dir/$hack_tarball
 
 sudo fc-cache -f -v
+
+# Disable mpd running as system
+sudo update-rc.d mpd disable
+sudo /etc/init.d/mpd stop
 
 # If in a country that allows it, install deCSS for DVD play back:
 #sudo /usr/share/doc/libdvdread4/install-css.sh
