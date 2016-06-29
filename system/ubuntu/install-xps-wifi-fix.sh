@@ -1,6 +1,8 @@
 #!/bin/bash
 
-if [ ! -e /etc/systemd/system ] ;
+echo "Installing XPS 13 workaround to reload iwlwifi kernel module on resume"
+
+if [ ! -e /etc/systemd/system ] ; then
     echo "Expected /etc/systemd/system directory to exist. Using systemd?"
     exit 1
 fi
