@@ -1,0 +1,17 @@
+[Unit]
+Description=Reload wifi kernel module
+After=suspend.target
+After=hibernate.target
+After=hybrid-sleep.target
+
+[Service]
+User=root
+Type=oneshot
+ExecStart=/etc/xps13/resume_wifi
+TimeoutSec=3
+StandardOutput=syslog
+
+[Install]
+WantedBy=suspend.target
+WantedBy=hibernate.target
+WantedBy=hybrid-sleep.target

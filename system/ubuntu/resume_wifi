@@ -1,0 +1,9 @@
+#!/bin/sh
+
+echo `date` | tee -a /tmp/resume_wifi.txt
+
+modprobe -r iwlwifi
+sleep 0.5
+modprobe iwlwifi
+sleep 0.5
+nmcli r wifi on
