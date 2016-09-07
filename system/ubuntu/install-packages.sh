@@ -114,5 +114,3 @@ sudo apt-get update
 # skip the license prompt
 #echo oracle-java8-installer shared/accepted-oracle-license-v1-1 select true | sudo /usr/bin/debconf-set-selections
 sudo apt-get install oracle-java8-installer
-
-echo 'ACTION=="add", ATTRS{idVendor}=="2341", ATTRS{idProduct}=="0042", SYMLINK+="mega2560"' | sudo tee /etc/udev/rules.d/80-arduino-mega-2560.rules
