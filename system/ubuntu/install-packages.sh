@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# Install typical set of packages for Ubuntu 16.04
+
 echo "America/Denver" | sudo tee /etc/timezone
 sudo dpkg-reconfigure --frontend noninteractive tzdata
 sudo apt-get update
@@ -13,6 +15,7 @@ sudo apt-get install -y \
     clang \
     curl \
     dfu-programmer \
+    dfu-util \
     fbreader \
     fonts-hack-otf \
     fonts-hack-ttf \
@@ -48,6 +51,7 @@ sudo apt-get install -y \
     mplayer \
     ncmpcpp \
     nodejs \
+    npm \
     p7zip-full \
     pandoc \
     pandoc-citeproc \
@@ -91,7 +95,8 @@ sudo update-rc.d mpd disable
 sudo /etc/init.d/mpd stop
 
 # If in a country that allows it, install deCSS for DVD play back:
-#sudo /usr/share/doc/libdvdread4/install-css.sh
+#sudo apt-get install libdvd-pkg
+#sudo dpkg-reconfigure libdvd-pkg
 
 # Add repository for graphics drivers
 sudo apt-add-repository -y ppa:graphics-drivers/ppa
