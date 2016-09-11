@@ -64,6 +64,7 @@ sudo apt-get install -y \
     pkg-config \
     python-pip \
     python-virtualenv \
+    qt5-default \
     screen \
     sqlite3 \
     subversion \
