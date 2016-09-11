@@ -14,6 +14,9 @@ sudo apt-get install -y \
     curl \
     dfu-programmer \
     fbreader \
+    fonts-hack-otf \
+    fonts-hack-ttf \
+    fonts-hack-web \
     ghc \
     git \
     gnupg \
@@ -82,17 +85,6 @@ sudo apt-get install -y \
     zlib1g-dev \
     zsh \
     ;
-
-hack_font_dir=~/.fonts/hack_mono/
-hack_release_major=2
-hack_release_minor=020
-hack_tarball=Hack-v${hack_release_major}_$hack_release_minor-otf.tar.gz
-mkdir -p $hack_font_dir
-wget --directory-prefix $hack_font_dir https://github.com/chrissimpkins/Hack/releases/download/v$hack_release_major.$hack_release_minor/$hack_tarball
-tar xvf $hack_font_dir/$hack_tarball -C $hack_font_dir
-rm $hack_font_dir/$hack_tarball
-
-sudo fc-cache -f -v
 
 # Disable mpd running as system
 sudo update-rc.d mpd disable
