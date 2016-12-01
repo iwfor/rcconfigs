@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# Install typical set of packages for Ubuntu 16.04
+
 echo "America/Denver" | sudo tee /etc/timezone
 sudo dpkg-reconfigure --frontend noninteractive tzdata
 sudo apt-get update
@@ -13,7 +15,11 @@ sudo apt-get install -y \
     clang \
     curl \
     dfu-programmer \
+    dfu-util \
     fbreader \
+    fonts-hack-otf \
+    fonts-hack-ttf \
+    fonts-hack-web \
     ghc \
     git \
     gnupg \
@@ -45,6 +51,7 @@ sudo apt-get install -y \
     mplayer \
     ncmpcpp \
     nodejs \
+    npm \
     p7zip-full \
     pandoc \
     pandoc-citeproc \
@@ -57,6 +64,7 @@ sudo apt-get install -y \
     pkg-config \
     python-pip \
     python-virtualenv \
+    qt5-default \
     screen \
     sqlite3 \
     subversion \
@@ -84,23 +92,13 @@ sudo apt-get install -y \
     zsh \
     ;
 
-hack_font_dir=~/.fonts/hack_mono/
-hack_release_major=2
-hack_release_minor=020
-hack_tarball=Hack-v${hack_release_major}_$hack_release_minor-otf.tar.gz
-mkdir -p $hack_font_dir
-wget --directory-prefix $hack_font_dir https://github.com/chrissimpkins/Hack/releases/download/v$hack_release_major.$hack_release_minor/$hack_tarball
-tar xvf $hack_font_dir/$hack_tarball -C $hack_font_dir
-rm $hack_font_dir/$hack_tarball
-
-sudo fc-cache -f -v
-
 # Disable mpd running as system
 sudo update-rc.d mpd disable
 sudo /etc/init.d/mpd stop
 
 # If in a country that allows it, install deCSS for DVD play back:
-#sudo /usr/share/doc/libdvdread4/install-css.sh
+#sudo apt-get install libdvd-pkg
+#sudo dpkg-reconfigure libdvd-pkg
 
 # Add repository for graphics drivers
 sudo apt-add-repository -y ppa:graphics-drivers/ppa
