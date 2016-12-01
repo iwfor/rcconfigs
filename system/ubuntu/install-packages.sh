@@ -78,6 +78,7 @@ sudo apt-get install -y \
     w3m-img \
     whois \
     xdotool \
+    xserver-xorg-dev \
     yasm \
     zlib1g-dev \
     zsh \
