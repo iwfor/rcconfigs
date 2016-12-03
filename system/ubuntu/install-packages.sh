@@ -74,6 +74,7 @@ sudo apt-get install -y \
     qt5-default \
     screen \
     sqlite3 \
+    sshfs \
     subversion \
     texi2html \
     texlive-fonts-extra \
