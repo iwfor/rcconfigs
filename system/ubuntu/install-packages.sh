@@ -10,12 +10,15 @@ sudo apt-get install -y \
     arduino \
     autoconf \
     automake \
+    btrfs-tools \
     build-essential \
     checkinstall \
     clang \
     curl \
     dfu-programmer \
     dfu-util \
+    exfat-fuse \
+    exfat-utils \
     fbreader \
     fonts-hack-otf \
     fonts-hack-ttf \
@@ -23,6 +26,8 @@ sudo apt-get install -y \
     ghc \
     git \
     gnupg \
+    jfsutils \
+    jmtpfs \
     lftp \
     libavcodec-dev \
     libavutil-dev \
@@ -49,9 +54,11 @@ sudo apt-get install -y \
     mpc \
     mpd \
     mplayer \
+    mtpfs \
     ncmpcpp \
     nodejs \
     npm \
+    ntfs-3g \
     p7zip-full \
     pandoc \
     pandoc-citeproc \
@@ -86,6 +93,7 @@ sudo apt-get install -y \
     w3m-img \
     whois \
     xdotool \
+    xfsprogs \
     xserver-xorg-dev \
     yasm \
     zlib1g-dev \
