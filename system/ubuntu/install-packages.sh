@@ -69,7 +69,6 @@ sudo apt-get install -y \
     pidgin-otr \
     pidgin-plugin-pack \
     pkg-config \
-    playonlinux \
     python-pip \
     python-virtualenv \
     qt5-default \
@@ -94,10 +93,6 @@ sudo apt-get install -y \
     vlc \
     w3m-img \
     whois \
-    winbind \
-    wine \
-    wine-gecko2.21 \
-    wine-mono0.0.8 \
     xdotool \
     xfsprogs \
     xserver-xorg-dev \
@@ -105,6 +100,16 @@ sudo apt-get install -y \
     zlib1g-dev \
     zsh \
     ;
+
+# Add the wine ppa
+sudo add-apt-repository -y ppa:ubuntu-wine/ppa
+sudo apt-get update
+sudo apt-get install -y \
+    wine1.8 \
+    playonlinux \
+    winbind \
+    wine-gecko2.21 \
+    wine-mono0.0.8 \
 
 # Disable mpd running as system
 sudo update-rc.d mpd disable
