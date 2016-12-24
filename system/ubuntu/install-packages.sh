@@ -69,6 +69,7 @@ sudo apt-get install -y \
     pidgin-otr \
     pidgin-plugin-pack \
     pkg-config \
+    playonlinux \
     python-pip \
     python-virtualenv \
     qt5-default \
@@ -95,6 +96,8 @@ sudo apt-get install -y \
     whois \
     winbind \
     wine \
+    wine-gecko2.21 \
+    wine-mono0.0.8 \
     xdotool \
     xfsprogs \
     xserver-xorg-dev \
