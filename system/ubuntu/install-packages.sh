@@ -93,6 +93,8 @@ sudo apt-get install -y \
     vlc \
     w3m-img \
     whois \
+    winbind \
+    wine \
     xdotool \
     xfsprogs \
     xserver-xorg-dev \
