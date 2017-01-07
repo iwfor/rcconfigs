@@ -69,10 +69,12 @@ sudo apt-get install -y \
     pidgin-otr \
     pidgin-plugin-pack \
     pkg-config \
+    python-apt \
     python-pip \
     python-virtualenv \
     qt5-default \
     screen \
+    smartmontools \
     sqlite3 \
     sshfs \
     subversion \
@@ -96,6 +98,7 @@ sudo apt-get install -y \
     xdotool \
     xfsprogs \
     xserver-xorg-dev \
+    xterm \
     yasm \
     zlib1g-dev \
     zsh \
@@ -132,3 +135,8 @@ sudo apt-get update
 # skip the license prompt
 #echo oracle-java8-installer shared/accepted-oracle-license-v1-1 select true | sudo /usr/bin/debconf-set-selections
 sudo apt-get install oracle-java8-installer
+
+sudo npm install n -g
+sudo n v6.9.4
+sudo npm install npm -g
+
