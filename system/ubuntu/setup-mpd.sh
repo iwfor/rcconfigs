@@ -1,3 +1,3 @@
 #!/bin/sh
 
-echo "MPDCONF=$HOME/.mpdconf" | sudo tee /etc/default/mpd
+echo "MPDCONF=$HOME/.mpdconf" | sudo tee -a /etc/default/mpd
