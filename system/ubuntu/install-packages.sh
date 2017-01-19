@@ -25,6 +25,7 @@ sudo apt-get install -y \
     fonts-hack-web \
     ghc \
     git \
+    gnome-keyring \
     gnupg \
     indicator-application \
     jfsutils \
@@ -37,6 +38,7 @@ sudo apt-get install -y \
     libdvdread4 \
     libexpat1-dev \
     libfaac-dev \
+    libgnome-keyring-dev \
     libgpac-dev \
     libmp3lame-dev \
     libopencore-amrnb-dev \
