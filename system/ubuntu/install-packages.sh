@@ -26,9 +26,11 @@ sudo apt-get install -y \
     ghc \
     git \
     gnupg \
+    indicator-application \
     jfsutils \
     jmtpfs \
     lftp \
+    libappindicator1 \
     libavcodec-dev \
     libavutil-dev \
     libcurl4-openssl-dev \
@@ -119,7 +121,7 @@ sudo update-rc.d mpd disable
 sudo /etc/init.d/mpd stop
 
 # If in a country that allows it, install deCSS for DVD play back:
-#sudo apt-get install libdvd-pkg
+#sudo apt-get install -y libdvd-pkg
 #sudo dpkg-reconfigure libdvd-pkg
 
 # Add repository for graphics drivers
@@ -134,9 +136,13 @@ sudo apt-get update
 # If you've accepted the Oracle license before, you can uncomment this line to
 # skip the license prompt
 #echo oracle-java8-installer shared/accepted-oracle-license-v1-1 select true | sudo /usr/bin/debconf-set-selections
-sudo apt-get install oracle-java8-installer
+sudo apt-get install -y oracle-java8-installer
 
+# Update node/npm (installs to /usr/local by default)
 sudo npm install n -g
 sudo n v6.9.4
 sudo npm install npm -g
 
+# Disable the global mpd service since we only run it as a user
+sudo service mpd stop
+sudo update-rc.d mpd disable
