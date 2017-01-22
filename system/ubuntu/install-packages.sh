@@ -14,6 +14,7 @@ sudo apt-get install -y \
     build-essential \
     checkinstall \
     clang \
+    cscope \
     curl \
     dfu-programmer \
     dfu-util \
