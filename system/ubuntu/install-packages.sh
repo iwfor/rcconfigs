@@ -35,6 +35,7 @@ sudo apt-get install -y \
     libappindicator1 \
     libavcodec-dev \
     libavutil-dev \
+    libclang-3.8-dev \
     libcurl4-openssl-dev \
     libdvdread4 \
     libexpat1-dev \
