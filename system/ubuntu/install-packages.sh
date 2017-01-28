@@ -2,10 +2,17 @@
 
 # Install typical set of packages for Ubuntu 16.04
 
-echo "America/Denver" | sudo tee /etc/timezone
+#echo "America/Denver" | sudo tee /etc/timezone
 sudo dpkg-reconfigure --frontend noninteractive tzdata
 sudo apt-get update
 sudo apt-get upgrade -y
+# Make sure the system is remotely accessible before continuing onto bigger install
+sudo apt-get install -y \
+    openssh-server \
+    screen \
+    vim \
+    zsh
+# Now install the big package list
 sudo apt-get install -y \
     arduino \
     autoconf \
@@ -21,6 +28,7 @@ sudo apt-get install -y \
     exfat-fuse \
     exfat-utils \
     fbreader \
+    firefox \
     fonts-hack-otf \
     fonts-hack-ttf \
     fonts-hack-web \
@@ -42,6 +50,7 @@ sudo apt-get install -y \
     libfaac-dev \
     libgnome-keyring-dev \
     libgpac-dev \
+    libicu-dev \
     libmp3lame-dev \
     libopencore-amrnb-dev \
     libopencore-amrwb-dev \
@@ -79,7 +88,6 @@ sudo apt-get install -y \
     python-pip \
     python-virtualenv \
     qt5-default \
-    screen \
     smartmontools \
     sqlite3 \
     sshfs \
@@ -96,7 +104,6 @@ sudo apt-get install -y \
     ttf-mscorefonts-installer \
     unison \
     unzip \
-    vim \
     vim-gtk \
     vlc \
     w3m-img \
@@ -107,10 +114,14 @@ sudo apt-get install -y \
     xterm \
     yasm \
     zlib1g-dev \
-    zsh \
     ;
 
+# Webex prerequisites. based on http://askubuntu.com/questions/115094/webex-desktop-sharing-on-64-bit-ubuntu
+sudo apt-get install -y openjdk-8-jre:i386 libxmu6:i386 icedtea-8-plugin
+sudo update-alternatives --set mozilla-javaplugin.so /usr/lib/jvm/java-8-openjdk-amd64/jre/lib/amd64/IcedTeaPlugin.so
+
 # Add the wine ppa
+echo "===> Setting up Wine"
 sudo add-apt-repository -y ppa:ubuntu-wine/ppa
 sudo apt-get update
 sudo apt-get install -y \
@@ -131,10 +142,12 @@ sudo /etc/init.d/mpd stop
 # Add repository for graphics drivers
 sudo apt-add-repository -y ppa:graphics-drivers/ppa
 
+echo "===> Installing HandBrake"
 sudo add-apt-repository -y ppa:stebbins/handbrake-releases
 sudo apt-get update
 sudo apt-get install -y handbrake-gtk handbrake-cli
 
+echo "===> Installing Java"
 sudo add-apt-repository -y ppa:webupd8team/java
 sudo apt-get update
 # If you've accepted the Oracle license before, you can uncomment this line to
