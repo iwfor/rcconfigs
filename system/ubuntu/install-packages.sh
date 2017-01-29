@@ -48,6 +48,7 @@ sudo apt-get install -y \
     libdvdread4 \
     libexpat1-dev \
     libfaac-dev \
+    libgcrypt20-dev \
     libgnome-keyring-dev \
     libgpac-dev \
     libicu-dev \
@@ -55,6 +56,8 @@ sudo apt-get install -y \
     libopencore-amrnb-dev \
     libopencore-amrwb-dev \
     libotr5-bin \
+    libqt5webkit5-dev \
+    libqwt-qt5-dev \
     libreadline-dev \
     librtmp-dev \
     libsqlite3-dev \
@@ -62,12 +65,13 @@ sudo apt-get install -y \
     libtheora-dev \
     libtool \
     libvorbis-dev \
+    libwebkit-dev \
     libx264-dev \
     libyaml-dev \
     mediainfo \
-    mpg123 \
     mpc \
     mpd \
+    mpg123 \
     mplayer \
     mtpfs \
     ncmpcpp \
