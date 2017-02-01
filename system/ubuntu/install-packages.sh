@@ -69,12 +69,9 @@ sudo apt-get install -y \
     libx264-dev \
     libyaml-dev \
     mediainfo \
-    mpc \
-    mpd \
     mpg123 \
     mplayer \
     mtpfs \
-    ncmpcpp \
     nodejs \
     npm \
     ntfs-3g \
