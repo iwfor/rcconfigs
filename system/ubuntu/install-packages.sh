@@ -36,6 +36,7 @@ sudo apt-get install -y \
     git \
     gnome-keyring \
     gnupg \
+    gvfs-bin \
     indicator-application \
     jfsutils \
     jmtpfs \
