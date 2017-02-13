@@ -25,6 +25,7 @@ sudo apt-get install -y \
     curl \
     dfu-programmer \
     dfu-util \
+    espeak \
     exfat-fuse \
     exfat-utils \
     fbreader \
