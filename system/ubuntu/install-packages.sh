@@ -18,6 +18,7 @@ sudo apt-get install -y \
     autoconf \
     automake \
     btrfs-tools \
+    bridge-utils \
     build-essential \
     checkinstall \
     clang \
