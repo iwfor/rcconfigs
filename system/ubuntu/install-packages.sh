@@ -160,7 +160,7 @@ sudo apt-get install -y oracle-java8-installer
 
 # Update node/npm (installs to /usr/local by default)
 sudo npm install n -g
-sudo n v6.9.4
+sudo n v6.10.1
 sudo npm install npm -g
 
 # Disable the global mpd service since we only run it as a user
