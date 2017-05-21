@@ -70,6 +70,7 @@ sudo apt-get install -y \
     libvorbis-dev \
     libwebkit-dev \
     libx264-dev \
+    libxv-dev \
     libyaml-dev \
     mediainfo \
     mpg123 \
