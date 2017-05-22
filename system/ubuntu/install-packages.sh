@@ -59,6 +59,7 @@ sudo apt-get install -y \
     libopencore-amrnb-dev \
     libopencore-amrwb-dev \
     libotr5-bin \
+    libpulse-dev \
     libqt5webkit5-dev \
     libqwt-qt5-dev \
     libreadline-dev \
