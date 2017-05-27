@@ -1,9 +1,9 @@
 #!/bin/bash
 
-# Install typical set of packages for Ubuntu 16.04
+# Install typical set of packages for Ubuntu 17.04
 
 #echo "America/Denver" | sudo tee /etc/timezone
-sudo dpkg-reconfigure --frontend noninteractive tzdata
+#sudo dpkg-reconfigure --frontend noninteractive tzdata
 sudo apt-get update
 sudo apt-get upgrade -y
 # Make sure the system is remotely accessible before continuing onto bigger install
@@ -27,6 +27,7 @@ sudo apt-get install -y \
     dfu-programmer \
     dfu-util \
     espeak \
+    ethtool \
     exfat-fuse \
     exfat-utils \
     fbreader \
@@ -34,6 +35,7 @@ sudo apt-get install -y \
     fonts-hack-otf \
     fonts-hack-ttf \
     fonts-hack-web \
+    gconf2 \
     ghc \
     git \
     gnome-keyring \
@@ -59,6 +61,7 @@ sudo apt-get install -y \
     libopencore-amrnb-dev \
     libopencore-amrwb-dev \
     libotr5-bin \
+    libpango1.0-0 \
     libpulse-dev \
     libqt5webkit5-dev \
     libqwt-qt5-dev \
@@ -69,7 +72,7 @@ sudo apt-get install -y \
     libtheora-dev \
     libtool \
     libvorbis-dev \
-    libwebkit-dev \
+    libwebkitgtk-dev \
     libx264-dev \
     libxv-dev \
     libyaml-dev \
@@ -77,6 +80,7 @@ sudo apt-get install -y \
     mpg123 \
     mplayer \
     mtpfs \
+    net-tools \
     nodejs \
     npm \
     ntfs-3g \
@@ -119,6 +123,7 @@ sudo apt-get install -y \
     xserver-xorg-dev \
     xterm \
     yasm \
+    zenity \
     zlib1g-dev \
     ;
 
@@ -126,16 +131,16 @@ sudo apt-get install -y \
 sudo apt-get install -y openjdk-8-jre:i386 libxmu6:i386 icedtea-8-plugin
 sudo update-alternatives --set mozilla-javaplugin.so /usr/lib/jvm/java-8-openjdk-amd64/jre/lib/amd64/IcedTeaPlugin.so
 
-# Add the wine ppa
-echo "===> Setting up Wine"
-sudo add-apt-repository -y ppa:ubuntu-wine/ppa
-sudo apt-get update
-sudo apt-get install -y \
-    wine1.8 \
-    playonlinux \
-    winbind \
-    wine-gecko2.21 \
-    wine-mono0.0.8 \
+# Add the wine ppa (Not working in 17.04)
+#echo "===> Setting up Wine"
+#sudo add-apt-repository -y ppa:ubuntu-wine/ppa
+#sudo apt-get update
+#sudo apt-get install -y \
+#    wine1.8 \
+#    playonlinux \
+#    winbind \
+#    wine-gecko2.21 \
+#    wine-mono0.0.8 \
 
 # Disable mpd running as system
 sudo update-rc.d mpd disable
@@ -163,7 +168,7 @@ sudo apt-get install -y oracle-java8-installer
 
 # Update node/npm (installs to /usr/local by default)
 sudo npm install n -g
-sudo n v6.10.1
+sudo n v6.10.3
 sudo npm install npm -g
 
 # Disable the global mpd service since we only run it as a user
