@@ -71,6 +71,7 @@ sudo apt-get install -y \
     libssl-dev \
     libtheora-dev \
     libtool \
+    libudev-dev \
     libvorbis-dev \
     libwebkitgtk-dev \
     libx264-dev \
