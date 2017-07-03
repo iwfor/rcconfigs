@@ -39,6 +39,7 @@ sudo apt-get install -y \
     ghc \
     git \
     gnome-keyring \
+    gnome-themes-standard \
     gnupg \
     gvfs-bin \
     indicator-application \
