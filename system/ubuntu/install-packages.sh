@@ -58,6 +58,7 @@ sudo apt-get install -y \
     libgnome-keyring-dev \
     libgpac-dev \
     libicu-dev \
+    libjsoncpp-dev \
     libmp3lame-dev \
     libopencore-amrnb-dev \
     libopencore-amrwb-dev \
@@ -128,6 +129,9 @@ sudo apt-get install -y \
     zenity \
     zlib1g-dev \
     ;
+
+# Install Intel microcode updates
+sudo apt-get install -y intel-microcode
 
 # Webex prerequisites. based on http://askubuntu.com/questions/115094/webex-desktop-sharing-on-64-bit-ubuntu
 sudo apt-get install -y openjdk-8-jre:i386 libxmu6:i386 icedtea-8-plugin
