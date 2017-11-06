@@ -8,6 +8,7 @@ sudo apt-get update
 sudo apt-get upgrade -y
 # Make sure the system is remotely accessible before continuing onto bigger install
 sudo apt-get install -y \
+    inetutils-tools \
     openssh-server \
     screen \
     vim \
@@ -43,7 +44,6 @@ sudo apt-get install -y \
     gnupg \
     gvfs-bin \
     indicator-application \
-    inetutils-tools \
     jfsutils \
     jmtpfs \
     lftp \
@@ -119,7 +119,7 @@ sudo apt-get install -y \
     ttf-mscorefonts-installer \
     unison \
     unzip \
-    vim-gtk \
+    vim-gtk3 \
     vlc \
     w3m-img \
     whois \
@@ -175,6 +175,7 @@ echo oracle-java8-installer shared/accepted-oracle-license-v1-1 select true | su
 sudo apt-get install -y oracle-java8-installer
 
 # Update node/npm (installs to /usr/local by default)
+sudo apt-get install -y nodejs npm
 sudo npm install n -g
 sudo n v6.11.5
 #sudo n v8.9.0
