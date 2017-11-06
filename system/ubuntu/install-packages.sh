@@ -43,6 +43,7 @@ sudo apt-get install -y \
     gnupg \
     gvfs-bin \
     indicator-application \
+    inetutils-tools \
     jfsutils \
     jmtpfs \
     lftp \
@@ -169,12 +170,13 @@ sudo add-apt-repository -y ppa:webupd8team/java
 sudo apt-get update
 # If you've accepted the Oracle license before, you can uncomment this line to
 # skip the license prompt
-#echo oracle-java8-installer shared/accepted-oracle-license-v1-1 select true | sudo /usr/bin/debconf-set-selections
+echo oracle-java8-installer shared/accepted-oracle-license-v1-1 select true | sudo /usr/bin/debconf-set-selections
 sudo apt-get install -y oracle-java8-installer
 
 # Update node/npm (installs to /usr/local by default)
 sudo npm install n -g
-sudo n v6.10.3
+sudo n v6.11.5
+#sudo n v8.9.0
 sudo npm install npm -g
 
 # Disable the global mpd service since we only run it as a user
