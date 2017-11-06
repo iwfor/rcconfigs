@@ -80,6 +80,7 @@ sudo apt-get install -y \
     libx264-dev \
     libxv-dev \
     libyaml-dev \
+    mdadm \
     mediainfo \
     mpg123 \
     mplayer \
