@@ -139,17 +139,6 @@ sudo apt-get install -y intel-microcode
 sudo apt-get install -y openjdk-8-jre:i386 libxmu6:i386 icedtea-8-plugin
 sudo update-alternatives --set mozilla-javaplugin.so /usr/lib/jvm/java-8-openjdk-amd64/jre/lib/amd64/IcedTeaPlugin.so
 
-# Add the wine ppa (Not working in 17.04)
-#echo "===> Setting up Wine"
-#sudo add-apt-repository -y ppa:ubuntu-wine/ppa
-#sudo apt-get update
-#sudo apt-get install -y \
-#    wine1.8 \
-#    playonlinux \
-#    winbind \
-#    wine-gecko2.21 \
-#    wine-mono0.0.8 \
-
 # Disable mpd running as system
 sudo update-rc.d mpd disable
 sudo /etc/init.d/mpd stop
