@@ -4,17 +4,17 @@
 
 #echo "America/Denver" | sudo tee /etc/timezone
 #sudo dpkg-reconfigure --frontend noninteractive tzdata
-sudo apt-get update
-sudo apt-get upgrade -y
+sudo apt update
+sudo apt upgrade -y
 # Make sure the system is remotely accessible before continuing onto bigger install
-sudo apt-get install -y \
+sudo apt install -y \
     inetutils-tools \
     openssh-server \
     screen \
     vim \
     zsh
 # Now install the big package list
-sudo apt-get install -y \
+sudo apt install -y \
     arduino \
     autoconf \
     automake \
@@ -133,10 +133,13 @@ sudo apt-get install -y \
     ;
 
 # Install Intel microcode updates
-sudo apt-get install -y intel-microcode
+sudo apt install -y intel-microcode
+
+# Install freeglut3 so slic3r works
+sudo apt install -y freeglut3
 
 # Webex prerequisites. based on http://askubuntu.com/questions/115094/webex-desktop-sharing-on-64-bit-ubuntu
-sudo apt-get install -y openjdk-8-jre:i386 libxmu6:i386 icedtea-8-plugin
+sudo apt install -y openjdk-8-jre:i386 libxmu6:i386 icedtea-8-plugin
 sudo update-alternatives --set mozilla-javaplugin.so /usr/lib/jvm/java-8-openjdk-amd64/jre/lib/amd64/IcedTeaPlugin.so
 
 # Disable mpd running as system
@@ -144,7 +147,7 @@ sudo update-rc.d mpd disable
 sudo /etc/init.d/mpd stop
 
 # If in a country that allows it, install deCSS for DVD play back:
-#sudo apt-get install -y libdvd-pkg
+#sudo apt install -y libdvd-pkg
 #sudo dpkg-reconfigure libdvd-pkg
 
 # Add repository for graphics drivers
@@ -152,19 +155,19 @@ sudo apt-add-repository -y ppa:graphics-drivers/ppa
 
 echo "===> Installing HandBrake"
 sudo add-apt-repository -y ppa:stebbins/handbrake-releases
-sudo apt-get update
-sudo apt-get install -y handbrake-gtk handbrake-cli
+sudo apt update
+sudo apt install -y handbrake-gtk handbrake-cli
 
 echo "===> Installing Java"
 sudo add-apt-repository -y ppa:webupd8team/java
-sudo apt-get update
+sudo apt update
 # If you've accepted the Oracle license before, you can uncomment this line to
 # skip the license prompt
 echo oracle-java8-installer shared/accepted-oracle-license-v1-1 select true | sudo /usr/bin/debconf-set-selections
-sudo apt-get install -y oracle-java8-installer
+sudo apt install -y oracle-java8-installer
 
 # Update node/npm (installs to /usr/local by default)
-sudo apt-get install -y nodejs npm
+sudo apt install -y nodejs npm
 sudo npm install n -g
 sudo n v6.11.5
 #sudo n v8.9.0
