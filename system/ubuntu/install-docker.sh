@@ -7,8 +7,8 @@ sudo apt-get install -y docker-ce docker-compose
 sudo usermod -aG docker ${USER}
 
 declare DOCKERCFG=/etc/grub.d/42_docker
-echo '# Enable Linux kernel swap memory limit for docker' | sudo tee $DOCKERCFG
-echo 'GRUB_CMDLINE_LINUX="${GRUB_CMDLINE_LINUX} cgroup_enable=memory swapaccount=1"' | sudo tee -a $DOCKERCFG
+sudo cp assets/42_docker $DOCKERCFG
+sudo chmod 0755 $DOCKERCFG
 sudo update-grub
 
 #sudo systemctl status docker

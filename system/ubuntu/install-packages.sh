@@ -60,11 +60,13 @@ sudo apt install -y \
     libgpac-dev \
     libicu-dev \
     libjsoncpp-dev \
+    libmagic-dev \
     libmp3lame-dev \
     libopencore-amrnb-dev \
     libopencore-amrwb-dev \
     libotr5-bin \
     libpango1.0-0 \
+    libpq-dev \
     libpulse-dev \
     libqt5webkit5-dev \
     libqwt-qt5-dev \
@@ -142,36 +144,8 @@ sudo apt install -y freeglut3
 sudo apt install -y openjdk-8-jre:i386 libxmu6:i386 icedtea-8-plugin
 sudo update-alternatives --set mozilla-javaplugin.so /usr/lib/jvm/java-8-openjdk-amd64/jre/lib/amd64/IcedTeaPlugin.so
 
-# Disable mpd running as system
-sudo update-rc.d mpd disable
-sudo /etc/init.d/mpd stop
-
-# If in a country that allows it, install deCSS for DVD play back:
-#sudo apt install -y libdvd-pkg
-#sudo dpkg-reconfigure libdvd-pkg
-
 # Add repository for graphics drivers
 sudo apt-add-repository -y ppa:graphics-drivers/ppa
-
-echo "===> Installing HandBrake"
-sudo add-apt-repository -y ppa:stebbins/handbrake-releases
-sudo apt update
-sudo apt install -y handbrake-gtk handbrake-cli
-
-echo "===> Installing Java"
-sudo add-apt-repository -y ppa:webupd8team/java
-sudo apt update
-# If you've accepted the Oracle license before, you can uncomment this line to
-# skip the license prompt
-echo oracle-java8-installer shared/accepted-oracle-license-v1-1 select true | sudo /usr/bin/debconf-set-selections
-sudo apt install -y oracle-java8-installer
-
-# Update node/npm (installs to /usr/local by default)
-sudo apt install -y nodejs npm
-sudo npm install n -g
-sudo n v6.11.5
-#sudo n v8.9.0
-sudo npm install npm -g
 
 # Disable the global mpd service since we only run it as a user
 sudo service mpd stop

@@ -1,0 +1,2 @@
+# Enable Linux kernel swap memory limit for docker
+GRUB_CMDLINE_LINUX="${GRUB_CMDLINE_LINUX} cgroup_enable=memory swapaccount=1"
