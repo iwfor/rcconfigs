@@ -57,7 +57,7 @@ filetype plugin indent on    " required
 "set mouse=a
 set mousemodel=popup_setpos
 set novb
-set tabstop=8
+set tabstop=4
 set softtabstop=4
 set shiftwidth=4
 set expandtab
@@ -369,7 +369,7 @@ endfunction
 
 function MapCommentatorQuickKey ()
     " Map commentator to ^C
-    imap <c-c> gcc
+    imap <c-c> <c-o>gcc
     nmap <c-c> gcc
     vmap <c-c> gc
 endfunction
