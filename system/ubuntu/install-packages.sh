@@ -106,6 +106,7 @@ sudo apt install -y \
     python-virtualenv \
     qt5-default \
     smartmontools \
+    sox \
     sqlite3 \
     sshfs \
     subversion \

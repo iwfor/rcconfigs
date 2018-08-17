@@ -17,3 +17,7 @@ alias dir="ls -AlF -G"
 alias l="ls -AsF -G"
 
 if [[ -s $HOME/.rvm/scripts/rvm ]] ; then source $HOME/.rvm/scripts/rvm ; fi
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="/home/iforaker/.sdkman"
+[[ -s "/home/iforaker/.sdkman/bin/sdkman-init.sh" ]] && source "/home/iforaker/.sdkman/bin/sdkman-init.sh"

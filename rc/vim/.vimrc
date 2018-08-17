@@ -21,6 +21,7 @@ Plugin 'tpope/vim-surround'
 Plugin 'ecomba/vim-ruby-refactoring'
 Plugin 'rust-lang/rust.vim'
 Plugin 'scrooloose/syntastic'
+Plugin 'udalov/kotlin-vim'
 
 " The following are examples of different formats supported.
 " Keep Plugin commands between vundle#begin/end.
