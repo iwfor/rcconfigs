@@ -33,7 +33,7 @@ fi
 alias ll="ls -lhF $LSCOLOROPT"
 alias la="command ls -lhFa $LSCOLOROPT"
 alias lf="command ls -F $LSCOLOROPT"
-alias dir="command ls -AlF $LSCOLOROPT"
+alias dir="command ls -AhlF $LSCOLOROPT"
 alias l="command ls -AsF $LSCOLOROPT"
 
 # BitKeeper nicers
