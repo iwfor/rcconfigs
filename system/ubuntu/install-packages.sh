@@ -50,7 +50,7 @@ sudo apt install -y \
     libappindicator1 \
     libavcodec-dev \
     libavutil-dev \
-    libclang-3.8-dev \
+    libclang-dev \
     libcurl4-openssl-dev \
     libdvdread4 \
     libexpat1-dev \
@@ -86,10 +86,7 @@ sudo apt install -y \
     mediainfo \
     mpg123 \
     mplayer \
-    mtpfs \
     net-tools \
-    nodejs \
-    npm \
     ntfs-3g \
     p7zip-full \
     pandoc \
