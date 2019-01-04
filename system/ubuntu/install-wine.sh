@@ -2,12 +2,8 @@
 
 # Add the wine ppa (Not working in 17.04)
 echo "===> Setting up Wine"
-sudo add-apt-repository -y ppa:ubuntu-wine/ppa
-sudo apt-get update
-sudo apt-get install -y \
-    wine2.0 \
-    playonlinux \
-    winbind \
-    wine-gecko2.21 \
-    wine-mono0.0.8 \
-
+sudo dpkg --add-architecture i386
+wget -qO - https://dl.winehq.org/wine-builds/winehq.key | sudo apt-key add -
+sudo apt-add-repository "deb https://dl.winehq.org/wine-builds/ubuntu/ `lsb_release -sc` main"
+sudo apt update
+sudo apt install --install-recommends -y winehq-stable playonlinux
