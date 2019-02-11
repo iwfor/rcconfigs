@@ -61,7 +61,7 @@ git_prompt_status() {
         test `git status --porcelain | wc -l` -ne 0 && {
             st="$st*"
         }
-        print "$repo %B%f$la%F{blue}$branch%f$ra%F{red}$st%b "
+        print "%F{red}$repo %B%f$la%F{blue}$branch%f$ra%F{red}$st%b "
     }
 }
 
