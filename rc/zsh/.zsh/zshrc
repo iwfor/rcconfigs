@@ -53,12 +53,15 @@ manpath=(/usr/man /usr/share/man /usr/local/man /usr/local/share/man ~/local/man
 git_prompt_status() {
     la="\u276C"
     ra="\u276D"
-    branch=`git rev-parse --abbrev-ref HEAD 2> /dev/null` && {
+    branch=`git rev-parse --abbrev-ref HEAD 2> /dev/null`
+    test -n "$branch" && {
+        remoterepo=`git remote -v | head -1 | awk '{print $2}'`
+        repo=`basename "$remoterepo"`
         st=''
         test `git status --porcelain | wc -l` -ne 0 && {
-            st="$st?"
+            st="$st*"
         }
-        print "%B%f$la%F{blue}$branch%f$ra%F{red}$st%b "
+        print "$repo %B%f$la%F{blue}$branch%f$ra%F{red}$st%b "
     }
 }
 
