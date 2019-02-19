@@ -61,7 +61,7 @@ git_prompt_status() {
         test `git status --porcelain | wc -l` -ne 0 && {
             st="$st*"
         }
-        print "%F{red}$repo %B%f$la%F{blue}$branch%f$ra%F{red}$st%b "
+        print "%B%F{red}$repo %f$la%F{magenta}$branch%f$ra%F{red}$st%b"
     }
 }
 
@@ -71,7 +71,7 @@ setopt prompt_percent
 setopt prompt_subst
 prompt_newline=$'\n%{\r%}'
 prompt_backtick='\`'
-PS1=$'%F{yellow}%B[%*]%b %F{yellow}%n%F{red}@%F{green}%m %F{cyan}%~\n\$(git_prompt_status)%F{green}%B$%b%f '
+PS1=$'%F{yellow}[%*] %B%F{cyan}%~%b \$(git_prompt_status)\n%B%F{yellow}%n%F{red}@%F{green}%m%b %F{cyan}%B⟫%b%f '
 PS2="%{$fg[yellow]%}%_%{$fg[red]%}>%{$reset_color%}"
 # fix vim syntax `"
 
