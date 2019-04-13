@@ -3,44 +3,49 @@ filetype off                  " required
 
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-" alternatively, pass a path where Vundle should install plugins
-"call vundle#begin('~/some/path/here')
+try
+  call vundle#begin()
+  " alternatively, pass a path where Vundle should install plugins
+  "call vundle#begin('~/some/path/here')
 
-" let Vundle manage Vundle, required
-Plugin 'gmarik/Vundle.vim'
-Plugin 'beloglazov/vim-online-thesaurus'
-"Plugin 'reedes/vim-wordy'
-Plugin 'reedes/vim-textobj-quote'
-Plugin 'tpope/vim-commentary'
-Plugin 'bling/vim-airline'
-Plugin 'majutsushi/tagbar'
-Plugin 'tpope/vim-fugitive'
-Plugin 'airblade/vim-gitgutter'
-Plugin 'tpope/vim-surround'
-Plugin 'ecomba/vim-ruby-refactoring'
-Plugin 'rust-lang/rust.vim'
-Plugin 'scrooloose/syntastic'
-Plugin 'udalov/kotlin-vim'
+  " let Vundle manage Vundle, required
+  Plugin 'gmarik/Vundle.vim'
+  Plugin 'beloglazov/vim-online-thesaurus'
+  "Plugin 'reedes/vim-wordy'
+  Plugin 'reedes/vim-textobj-quote'
+  Plugin 'tpope/vim-commentary'
+  Plugin 'bling/vim-airline'
+  Plugin 'majutsushi/tagbar'
+  Plugin 'tpope/vim-fugitive'
+  Plugin 'airblade/vim-gitgutter'
+  Plugin 'tpope/vim-surround'
+  Plugin 'ecomba/vim-ruby-refactoring'
+  Plugin 'rust-lang/rust.vim'
+  Plugin 'scrooloose/syntastic'
+  Plugin 'udalov/kotlin-vim'
 
-" The following are examples of different formats supported.
-" Keep Plugin commands between vundle#begin/end.
-" plugin on GitHub repo
-"Plugin 'tpope/vim-fugitive'
-" plugin from http://vim-scripts.org/vim/scripts.html
-"Plugin 'L9'
-" Git plugin not hosted on GitHub
-"Plugin 'git://git.wincent.com/command-t.git'
-" git repos on your local machine (i.e. when working on your own plugin)
-"Plugin 'file:///home/gmarik/path/to/plugin'
-" The sparkup vim script is in a subdirectory of this repo called vim.
-" Pass the path to set the runtimepath properly.
-"Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
-" Avoid a name conflict with L9
-"Plugin 'user/L9', {'name': 'newL9'}
+  " The following are examples of different formats supported.
+  " Keep Plugin commands between vundle#begin/end.
+  " plugin on GitHub repo
+  "Plugin 'tpope/vim-fugitive'
+  " plugin from http://vim-scripts.org/vim/scripts.html
+  "Plugin 'L9'
+  " Git plugin not hosted on GitHub
+  "Plugin 'git://git.wincent.com/command-t.git'
+  " git repos on your local machine (i.e. when working on your own plugin)
+  "Plugin 'file:///home/gmarik/path/to/plugin'
+  " The sparkup vim script is in a subdirectory of this repo called vim.
+  " Pass the path to set the runtimepath properly.
+  "Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
+  " Avoid a name conflict with L9
+  "Plugin 'user/L9', {'name': 'newL9'}
 
-" All of your Plugins must be added before the following line
-call vundle#end()            " required
+  " All of your Plugins must be added before the following line
+  call vundle#end()            " required
+catch
+  " Weeping
+endtry
+
 filetype plugin indent on    " required
 
 " To ignore plugin indent changes, instead use:
@@ -214,10 +219,6 @@ abbreviate Dtor Destructor
 abbreviate #i #include
 abbreviate #d #define
 
-" Fix common spelling mistakes
-abbr teh the
-abbr Teh The
-
 nnoremap <silent> <F7> :Tlist<CR>
 command Q :q
 command Wq :wq
@@ -232,17 +233,37 @@ if has("gui_macvim")
   let macvim_hig_shift_movement = 1
 endif
 
-" Switch syntax highlighting on, when the terminal has colors
-" Also switch on highlighting the last used search pattern.
-if &t_Co > 2 || has("gui_running")
+" Set a preferred font
+if has("gui_running")
+  set guifont=Hack\ 14,DejaVu\ Sans\ Mono\ 14,Courier\ 14
+endif
+
+fun! SetMyTheme()
+  " &t_Co is number of supported colors
+  if &t_Co > 2 || has("gui_running")
     syntax on
     set hlsearch
     set incsearch
+    try
+      " Set my theme if it's installed.
+      colorscheme izek
+    catch /^Vim/
+      colorscheme industry
+    endtry
+  endif
+endfun
 
-    " Load my colorscheme
-    colorscheme izek
+fun! SetWritingTheme()
+  " &t_Co is number of supported colors
+  if &t_Co > 2 || has("gui_running")
+    syntax off
+    set hlsearch
+    set incsearch
+    colorscheme morning
+  endif
+endfun
 
-endif
+call SetMyTheme()
 
 " These are the other Ruby file types
 autocmd BufRead,BufNewFile Rakefile set filetype=ruby
@@ -287,45 +308,49 @@ augroup gzip
 
     " Enable editing of gzipped files
     " set binary mode before reading the file
-    autocmd BufReadPre,FileReadPre      *.gz,*.bz2 set bin
-    autocmd BufReadPost,FileReadPost    *.gz call GZIP_read("gunzip")
+    autocmd BufReadPre,FileReadPre      *.gz,*.bz2,*.xz set bin
+    autocmd BufReadPost,FileReadPost    *.gz  call GZIP_read("gunzip")
     autocmd BufReadPost,FileReadPost    *.bz2 call GZIP_read("bunzip2")
-    autocmd BufWritePost,FileWritePost  *.gz call GZIP_write("gzip")
+    autocmd BufReadPost,FileReadPost    *.xz  call GZIP_read("unxz")
+    autocmd BufWritePost,FileWritePost  *.gz  call GZIP_write("gzip")
     autocmd BufWritePost,FileWritePost  *.bz2 call GZIP_write("bzip2")
-    autocmd FileAppendPre                       *.gz call GZIP_appre("gunzip")
-    autocmd FileAppendPre                       *.bz2 call GZIP_appre("bunzip2")
-    autocmd FileAppendPost              *.gz call GZIP_write("gzip")
+    autocmd BufWritePost,FileWritePost  *.xz  call GZIP_write("xz")
+    autocmd FileAppendPre               *.gz  call GZIP_appre("gunzip")
+    autocmd FileAppendPre               *.bz2 call GZIP_appre("bunzip2")
+    autocmd FileAppendPre               *.xz  call GZIP_appre("unxz")
+    autocmd FileAppendPost              *.gz  call GZIP_write("gzip")
     autocmd FileAppendPost              *.bz2 call GZIP_write("bzip2")
+    autocmd FileAppendPost              *.xz  call GZIP_write("xz")
 
     " After reading compressed file: Uncompress text in buffer with "cmd"
     fun! GZIP_read(cmd)
-    " set 'cmdheight' to two, to avoid the hit-return prompt
-    let ch_save = &ch
-    set ch=3
-    " when filtering the whole buffer, it will become empty
-    let empty = line("'[") == 1 && line("']") == line("$")
-    let tmp = tempname()
-    let tmpe = tmp . "." . expand("<afile>:e")
-    " write the just read lines to a temp file "'[,']w tmp.gz"
-    execute "'[,']w " . tmpe
-    " uncompress the temp file "!gunzip tmp.gz"
-    execute "!" . a:cmd . " " . tmpe
-    " delete the compressed lines
-    '[,']d
-    " read in the uncompressed lines "'[-1r tmp"
-    set nobin
-    execute "'[-1r " . tmp
-    " if buffer became empty, delete trailing blank line
-    if empty
-      normal Gdd''
-    endif
-    " delete the temp file
-    call delete(tmp)
-    let &ch = ch_save
-    " When uncompressed the whole buffer, do autocommands
-    if empty
-      execute ":doautocmd BufReadPost " . expand("%:r")
-    endif
+      " set 'cmdheight' to two, to avoid the hit-return prompt
+      let ch_save = &ch
+      set ch=3
+      " when filtering the whole buffer, it will become empty
+      let empty = line("'[") == 1 && line("']") == line("$")
+      let tmp = tempname()
+      let tmpe = tmp . "." . expand("<afile>:e")
+      " write the just read lines to a temp file "'[,']w tmp.gz"
+      execute "'[,']w " . tmpe
+      " uncompress the temp file "!gunzip tmp.gz"
+      execute "!" . a:cmd . " " . tmpe
+      " delete the compressed lines
+      '[,']d
+      " read in the uncompressed lines "'[-1r tmp"
+      set nobin
+      execute "'[-1r " . tmp
+      " if buffer became empty, delete trailing blank line
+      if empty
+        normal Gdd''
+      endif
+      " delete the temp file
+      call delete(tmp)
+      let &ch = ch_save
+      " When uncompressed the whole buffer, do autocommands
+      if empty
+        execute ":doautocmd BufReadPost " . expand("%:r")
+      endif
     endfun
 
     " After writing compressed file: Compress written file with "cmd"
@@ -361,6 +386,7 @@ function PlainTextSettings ()
 endfunction
 
 function ProgrammingSettings ()
+    call SetMyTheme()
     setlocal tabstop=4
     setlocal softtabstop=4
     setlocal shiftwidth=4
@@ -385,6 +411,7 @@ function CxxSettings()
 endfunction
 
 function TwoSpaceSettings()
+    call SetMyTheme()
     setlocal tabstop=2
     setlocal softtabstop=2
     setlocal shiftwidth=2
@@ -393,6 +420,7 @@ function TwoSpaceSettings()
 endfunction
 
 function MakefileSettings()
+    call SetMyTheme()
     setlocal tabstop=4
     setlocal softtabstop=4
     setlocal shiftwidth=4
@@ -410,15 +438,16 @@ function MarkdownSettings()
 endfunction
 
 function WritingSettings()
-    " Why doesn't this load by default in gvim?
-    syntax region potionString start=/\v"/ end=/\v"/
-    highlight link potionString String
-    hi String guifg=#ffff00
-    " hide line numbers
-    set nonumber
-    setlocal wrap
-    setlocal spell spelllang=en_us
-    setlocal nonumber
+  call SetWritingTheme()
+  " Why doesn't this load by default in gvim?
+  syntax region potionString start=/\v"/ end=/\v"/
+  highlight link potionString String
+  "hi String guifg=#ffff00
+  " hide line numbers
+  set nonumber
+  setlocal wrap
+  setlocal spell spelllang=en_us
+  setlocal nonumber
 endfunction
 
 func! WordProcessorSettings()
@@ -427,7 +456,7 @@ func! WordProcessorSettings()
   " Use physical tabs instead of spaces.
   setlocal noexpandtab
   setlocal spell spelllang=en_us 
-  set thesaurus+=/home/iforaker/.vim/thesaurus/mthesaur.txt
+  set thesaurus+=~/.vim/thesaurus/mthesaur.txt
   set complete+=s
   " Replace Vim's default formatter with par (must be installed)
   "set formatprg=par
@@ -435,18 +464,20 @@ func! WordProcessorSettings()
   setlocal linebreak
   setlocal showbreak=+
   " Fix common spelling mistakes
-  abbr accross across
   abbr Accross Across
-  abbr floding folding
   abbr Im I'm
-  abbr shouldnt shouldn't
-  abbr thats that's
-  abbr wouldnt wouldn't
-  abbr Wouldnt Wouldn't
-  abbr shouldve should've
-  abbr wouldve would've
-  abbr weve we've
+  abbr Teh The
   abbr Weve We've
+  abbr Wouldnt Wouldn't
+  abbr accross across
+  abbr floding folding
+  abbr shouldnt shouldn't
+  abbr shouldve should've
+  abbr teh the
+  abbr thats that's
+  abbr weve we've
+  abbr wouldnt wouldn't
+  abbr wouldve would've
 endfu
 com! WP call WordProcessorSettings()
 
