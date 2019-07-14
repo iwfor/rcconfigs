@@ -18,7 +18,6 @@ sudo apt install -y \
     arduino \
     autoconf \
     automake \
-    btrfs-tools \
     bridge-utils \
     build-essential \
     checkinstall \
@@ -78,7 +77,6 @@ sudo apt install -y \
     libtool \
     libudev-dev \
     libvorbis-dev \
-    libwebkitgtk-dev \
     libx264-dev \
     libxv-dev \
     libyaml-dev \
@@ -131,6 +129,13 @@ sudo apt install -y \
     zenity \
     zlib1g-dev \
     ;
+
+
+#    btrfs-tools \
+#  replaced by
+#    btrfs-progs
+
+#    libwebkitgtk-dev \
 
 # Install Intel microcode updates
 sudo apt install -y intel-microcode

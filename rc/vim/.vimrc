@@ -451,6 +451,7 @@ function WritingSettings()
 endfunction
 
 func! WordProcessorSettings()
+  call SetWritingTheme()
   " Don't break a line after a one-letter word.  It's broken before it instead (if possible).
   "setlocal formatoptions=1 
   " Use physical tabs instead of spaces.
