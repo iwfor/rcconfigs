@@ -1,5 +1,5 @@
 set nocompatible              " be iMproved, required
-filetype off                  " required
+filetype off                  " required for some plugins to detect file types correctly
 
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
@@ -23,6 +23,7 @@ try
   Plugin 'rust-lang/rust.vim'
   Plugin 'scrooloose/syntastic'
   Plugin 'udalov/kotlin-vim'
+  Plugin 'gwadej/vim-openscad'
 
   " The following are examples of different formats supported.
   " Keep Plugin commands between vundle#begin/end.
@@ -278,6 +279,7 @@ autocmd BufRead,BufNewFile *.md     set filetype=markdown
 autocmd FileType sh,tcl,java,jam,zsh,tcsh,sh,bash,nsis  call ProgrammingSettings()
 autocmd FileType fsx                                    call ProgrammingSettings()
 autocmd FileType c,cpp                                  call CxxSettings()
+autocmd FileType rust                                   call ProgrammingSettings()
 autocmd FileType perl                                   call TwoSpaceSettings() 
 autocmd FileType python,yaml                            call TwoSpaceSettings()
 autocmd FileType html,xhtml,css,xml,xsl,vim             call TwoSpaceSettings()
