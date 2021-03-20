@@ -1,9 +1,15 @@
 #!/usr/bin/env ruby
 
+require 'json'
+require 'yaml'
+#require 'nokogiri'
+
 unless $0.match(/script\/server/)
 
   require 'rubygems'
   require 'irb/completion'
+  require 'bigdecimal'
+  require 'bigdecimal/util'
   ARGV << "--readline"
 
   require 'irb/ext/save-history'
