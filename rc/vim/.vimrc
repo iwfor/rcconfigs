@@ -260,7 +260,7 @@ fun! SetWritingTheme()
     syntax off
     set hlsearch
     set incsearch
-    colorscheme morning
+    "colorscheme morning
   endif
 endfun
 
