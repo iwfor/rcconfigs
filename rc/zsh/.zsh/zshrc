@@ -71,7 +71,7 @@ setopt prompt_percent
 setopt prompt_subst
 prompt_newline=$'\n%{\r%}'
 prompt_backtick='\`'
-PS1=$'%F{yellow}[%*] %B%F{cyan}%~%b \$(git_prompt_status)\n%B%F{yellow}%n%F{red}@%F{green}%m%b %F{cyan}%B⟫%b%f '
+PS1=$'%F{yellow}[%*] %B%F{cyan}%~%b \$(git_prompt_status)\n%B%F{yellow}%n%F{red}@%F{green}%m%b %F{cyan}%B\$%b%f '
 PS2="%{$fg[yellow]%}%_%{$fg[red]%}>%{$reset_color%}"
 # fix vim syntax `"
 
@@ -94,13 +94,13 @@ if [[ "z$SHELL" = "z" ]] ; then
 fi
 
 # bring in other files
-. ~/.zsh/bindings
 . ~/.zsh/aliases
 . ~/.zsh/cvs
 . ~/.zsh/hosts
 . ~/.zsh/completion
 . ~/.zsh/term
 . ~/.zsh/dirs
+. ~/.zsh/bindings
 
 if [[ -e ~/.zshrc_local ]] ; then
     . ~/.zshrc_local
