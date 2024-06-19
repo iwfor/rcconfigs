@@ -1,6 +1,9 @@
 set nocompatible              " be iMproved, required
 filetype off                  " required for some plugins to detect file types correctly
 
+" Turn off viminfo when using gopass
+autocmd BufNewFile,BufRead /private/**/gopass** setlocal noswapfile nobackup noundofile viminfo=""
+
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 try
